@@ -2,11 +2,14 @@
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use Slim\App;
 session_start();
 require '../../vendor/autoload.php';
 $settings =     require __DIR__.'/../../src/settings.php';
 $app = new \Slim\App($settings);
-require  __DIR__.'/../../src/dependencies.php';
+// Set up dependencies
+ $dependencies = require __DIR__ . '/../src/dependencies.php';
+ $dependencies($app);
 
 
 $config['db']['host']   = 'localhost';
@@ -17,12 +20,12 @@ $config['db']['dbname'] = 'login';
 
 $container = $app->getContainer();
 
-$container['logger'] = function($c) {
+/*$container['logger'] = function($c) {
     $logger = new \Monolog\Logger('my_logger');
     $file_handler = new \Monolog\Handler\StreamHandler('../logs/app.log');
     $logger->pushHandler($file_handler);
     return $logger;
-};
+};*/
 
 $container['db'] = function ($c) {
     $db = $c['settings']['db'];
@@ -33,10 +36,10 @@ $container['db'] = function ($c) {
     return $pdo;
 };
 
-$app->get('/hola/{name}', function (Request $request, Response $response, array $args) {
+$app->get('/hola/{name}', function (Request $request, Response $response, array $args) use($container) {
     $name = $args['name'];
-    
-   //$this->logger->addIinfo('dd');
+    var_dump($container);
+   $container->get('logger')->addInfo('desde index test prueva2');
     $response->getBody()->write("hola, $name");
     
    
