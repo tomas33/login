@@ -36,38 +36,7 @@ $container['db'] = function ($c) {
     return $pdo;
 };
 
-$app->get('/hola/{name}', function (Request $request, Response $response, array $args) use($container) {
-    $name = $args['name'];
-    var_dump($container);
-   $container->get('logger')->addInfo('desde index test prueva2');
-    $response->getBody()->write("hola, $name");
-    
-   
-    return $response;
-});
 
-$app->get('/ticket/{id}', function (Request $request, Response $response, $args) {
-    $ticket_id = (int)$args['id'];
-    $mapper = new TicketMapper($this->db);
-    $ticket = $mapper->getTicketById($ticket_id);
 
-    $response->getBody()->write(var_export($ticket, true));
-    return $response;
-});
-$app->get('/login', function (Request $request, Response $response ,$args) {
-    $username ='tomas';
-    $query = $this->db->prepare('SELECT password, username, memberID,rol FROM members WHERE username = :username AND active="Yes" ');
-    $query->bindParam(":username", $username, PDO::PARAM_STR);
-    //$this->login;
-    $query->execute();
-    $datos = $query->fetchAll(pdo::FETCH_ASSOC);
-    var_dump($datos);
-    //var_dump($this->login);
-    foreach ($datos as $row) {
-        print $row['username'] . "\t";
-        
-   }
-  //$app->render();
-       return $response;
-});
+
 $app->run();
