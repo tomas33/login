@@ -1,4 +1,5 @@
 <?php
+namespace app\controllers;
 use Psr\Container\ContainerInterface;
 if (!defined('PASSWORD_BCRYPT')) {
         define('PASSWORD_BCRYPT', 1);
@@ -6,10 +7,17 @@ if (!defined('PASSWORD_BCRYPT')) {
 }
 
 Class Password {
+protected $container;
+    public function __construct($container) {
+        $this->container = $container;
+    }
 
-    public function __construct() {}
-
-
+    public function __get($property) {
+        if ($this->container->{$property})
+        {
+            return $this->container{$$property};
+        }
+    }
     /**
      * Hash the password using the specified algorithm
      *

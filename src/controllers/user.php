@@ -1,4 +1,5 @@
 <?php
+namespace app\controllers;
 //use Psr\Container\ContainerInterface;
 include('password.php');
 class User extends Password{
