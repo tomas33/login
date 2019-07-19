@@ -12,7 +12,7 @@ return function (App $app) {
         //$container->get('logger')->info("Slim-Skeleton '/' route");
         $container->get('logger')->addInfo('desde slim.es');
         // Render index view
-        return $container->get('renderer')->render($response, 'index.phtml', $args);
+        return $this->renderer->render($response,'index.phtml', $args);//$container->get('renderer')->render($response, 'index.phtml', $args);
     });
     $app->get('/login', function (Request $request, Response $response ,$args) {
     $username ='tomas';
