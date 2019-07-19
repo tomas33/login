@@ -8,9 +8,11 @@ require '../../vendor/autoload.php';
 $settings =     require __DIR__.'/../../src/settings.php';
 $app = new \Slim\App($settings);
 // Set up dependencies
- $dependencies = require __DIR__ . '/../src/dependencies.php';
+ $dependencies = require __DIR__ . '/../../src/dependencies.php';
  $dependencies($app);
-
+// Register routes
+$routes = require __DIR__ . '/../../src/routes.php';
+$routes($app);
 
 $config['db']['host']   = 'localhost';
 $config['db']['user']   = 'root';
