@@ -7,9 +7,16 @@ if (!defined('PASSWORD_BCRYPT')) {
 }
 
 Class Password {
-protected $container;
+    
+    protected $container;
+    //viene de user.php
+    private $db;
+
+
     public function __construct($container) {
         $this->container = $container;
+         $this->db = $db;
+        $this->container = $login;
     }
 
     public function __get($property) {

@@ -5,14 +5,14 @@ include('password.php');
 class User extends Password{
 
     private $db;
-    protected $container;
+   
 
    // constructor receives container instance
-   public function __construct(\Slim\App $login) {
-       parent::__construct();
+   public function __construct() {
+       //parent::__construct();
 
         $this->db = $db;
-        $this->container = $login;
+        
    }
 
 	private function get_user_hash($request, $response, $args){
@@ -61,7 +61,10 @@ class User extends Password{
 			return true;
 		}
 	}
-
+        public function show($request,$response) {
+            return $this->render($response, 'index.phtml');
+            
+        }
 }
 
 

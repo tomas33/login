@@ -30,11 +30,7 @@ return function (App $app) {
   //$app->render();
        return $response;
 });
-$app->get('/test', function (Request $request, Response $response, array $args) use ($container){
-        // Sample log message
-        $container->get('logger')->info("Slim-Skeleton '/' route");
-        $container->get('logger')->addInfo('test');
-        // Render index view
-        return $container->get('renderer')->render($response, 'index.phtml', $args);
-    });
+$app->get('/test', 'app\controllers\User:show');
+       
+      
 };
