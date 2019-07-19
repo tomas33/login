@@ -7,12 +7,12 @@ use Slim\Http\Response;
 return function (App $app) {
     $container = $app->getContainer();
 
-    $app->get('/[{name}]', function (Request $request, Response $response, array $args) use ($container) {
+    $app->get('/', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
         //$container->get('logger')->info("Slim-Skeleton '/' route");
         $container->get('logger')->addInfo('desde slim.es');
         // Render index view
-        return $this->renderer->render($response,'index.phtml', $args);//$container->get('renderer')->render($response, 'index.phtml', $args);
+        return $container->get('renderer')->render($response, 'index.phtml', $args);
     });
     $app->get('/login', function (Request $request, Response $response ,$args) {
     $username ='tomas';
