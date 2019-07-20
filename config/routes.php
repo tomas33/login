@@ -9,12 +9,12 @@ return function (App $app) {
 
     $app->get('/', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
-        //$container->get('logger')->info("Slim-Skeleton '/' route");
+        
         $container->get('logger')->addInfo('desde slim.es');
         // Render index view
         return $container->get('renderer')->render($response, 'index.phtml', $args);
     });
-    $app->get('/login', function (Request $request, Response $response, $args) {
+    $app->get('/login', function (Request $request, Response $response) use ($container){
         $username = 'tomas';
         $query = $this->db->prepare('SELECT password, username, memberID,rol FROM members WHERE username = :username AND active="Yes" ');
         $query->bindParam(":username", $username, PDO::PARAM_STR);
@@ -29,5 +29,5 @@ return function (App $app) {
         //$app->render();
         return $response;
     });
-    $app->get('/test', 'app\controllers\User:show');
+    $app->get('/test', 'app\controllers\UserController');
 };
