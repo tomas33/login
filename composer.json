@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "app\\": "src/"
+            "app\\": "src"
         }
     }
     ,
@@ -40,3 +40,4 @@
         "test": "phpunit"
     }
 }
+
