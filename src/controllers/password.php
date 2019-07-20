@@ -1,30 +1,33 @@
 <?php
+
 namespace app\controllers;
+
 use Psr\Container\ContainerInterface;
+
 if (!defined('PASSWORD_BCRYPT')) {
-        define('PASSWORD_BCRYPT', 1);
-        define('PASSWORD_DEFAULT', PASSWORD_BCRYPT);
+    define('PASSWORD_BCRYPT', 1);
+    define('PASSWORD_DEFAULT', PASSWORD_BCRYPT);
 }
 
 Class Password {
-    
+
     protected $container;
     //viene de user.php
     private $db;
 
-
     public function __construct($container) {
         $this->container = $container;
-         $this->db = $db;
-        $this->container = $login;
+        $this->db = $db;
+        //$this->container = $login;
     }
 
-    public function __get($property) {
-        if ($this->container->{$property})
-        {
-            return $this->container{$$property};
-        }
-    }
+    /* public function __get($property) {
+      if ($this->container->{$property})
+      {
+      return $this->container{$$property};
+      }
+      } */
+
     /**
      * Hash the password using the specified algorithm
      *
@@ -75,11 +78,11 @@ Class Password {
                 case 'integer' :
                 case 'double' :
                 case 'string' :
-                    $salt = (string)$options['salt'];
+                    $salt = (string) $options['salt'];
                     break;
                 case 'object' :
                     if (method_exists($options['salt'], '__tostring')) {
-                        $salt = (string)$options['salt'];
+                        $salt = (string) $options['salt'];
                         break;
                     }
                 case 'array' :
@@ -110,7 +113,6 @@ Class Password {
         return $ret;
     }
 
-
     /**
      * Generates Entropy using the safest available method, falling back to less preferred methods depending on support
      *
@@ -118,7 +120,7 @@ Class Password {
      *
      * @return string Returns raw bytes
      */
-    function generate_entropy($bytes){
+    function generate_entropy($bytes) {
         $buffer = '';
         $buffer_valid = false;
         if (function_exists('mcrypt_create_iv') && !defined('PHALANGER')) {
@@ -175,7 +177,7 @@ Class Password {
      * @return array The array of information about the hash.
      */
     function password_get_info($hash) {
-        $return = array('algo' => 0, 'algoName' => 'unknown', 'options' => array(), );
+        $return = array('algo' => 0, 'algoName' => 'unknown', 'options' => array(),);
         if (substr($hash, 0, 4) == '$2y$' && strlen($hash) == 60) {
             $return['algo'] = PASSWORD_BCRYPT;
             $return['algoName'] = 'bcrypt';
