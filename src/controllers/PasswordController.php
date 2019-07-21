@@ -9,7 +9,7 @@ if (!defined('PASSWORD_BCRYPT')) {
     define('PASSWORD_DEFAULT', PASSWORD_BCRYPT);
 }
 
-Class PasswordComtroller {
+Class PasswordController {
 
     protected $container;
     //viene de user.php

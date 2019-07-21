@@ -21,7 +21,7 @@ return function (App $app) {
         return $logger;
     };
     $container['UserController'] = function ($c) {
-        return new app\controllers\UserController();
+        return new app\controllers\UserController($c);
     };
     //base de datos
     $container['db'] = function ($c) {
