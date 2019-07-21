@@ -17,9 +17,9 @@ return [
         //config base de datos
         'db' => [
             'host' => 'mysql',
-            'user' => 'login_user',
-            'pass' => 'login_password',
-            'dbname' => 'login'
+            'user' => getenv('MYSQL_USER'),
+            'pass' => getenv('MYSQL_PASSWORD'),
+            'dbname' => getenv('MYSQL_DATABASE')
         ],
     ],
 ];
