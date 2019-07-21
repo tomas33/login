@@ -72,5 +72,3 @@ class UserController extends PasswordController {
     }
 
 }
-
-?>
