@@ -12,6 +12,8 @@ services:
             - .:/app
         build:
             context: .
+        env_file:
+            - .env
 
     nginx:
         image: nginx:1.15.5-alpine
