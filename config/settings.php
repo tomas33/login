@@ -14,7 +14,6 @@ return [
             'path' => __DIR__ . '/../logs/log-app.log',
             'level' => \Monolog\Logger::DEBUG,
         ],
-
         //config base de datos
         'db' => [
             'host' => 'mysql',
@@ -23,6 +22,5 @@ return [
             'dbname' => 'login'
         ],
     ],
-
 ];
 
