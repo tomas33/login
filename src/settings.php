@@ -16,9 +16,9 @@ return [
         ],
         //config base de datos
         'db' => [
-            'host' => 'localhost',
-            'user' => 'root',
-            'pass' => '',
+            'host' => 'mysql',
+            'user' => 'login_user',
+            'pass' => 'login_password',
             'dbname' => 'login'
         ],
     ],
