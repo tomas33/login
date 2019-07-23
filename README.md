@@ -1,19 +1,21 @@
-# Slim Framework 3 Skeleton Application
+# Login App
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+Esta aplicación tiene el proposito de entender el funcionamiento de Slim framework, así como entender algunos patrones
+de desarrollo como MVC, ADR, contenedor de dependencias, routing, dependencias con composer, namespaces entre otros.
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+El único propósito es el de aprender y mejorar las habilidades de programación así como toda la parte de testing.
 
-## Install the Application
+## Instalar la aplicación
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+Lo primero que se necesita para que la aplicación funcione es tener docker instalado en la máquina donde se va a 
+desarrollar.
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+Se puede encontrar en el [docker.com](https://docs.docker.com/install/).
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+Antes de inicializar el proyecto, se deberá crear un fichero `.env` en la raíz o simplemente copiar el de `.env.dist`
+y poner los valores que se deseen.
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
+Una vez instalado docker simplemente se tendrá que ejecutar `docker-compose up -d` para levantar todos los servicios.
 
 To run the application in development, you can run these commands 
 
@@ -27,3 +29,6 @@ Run this command in the application directory to run the test suite
 That's it! Now go build something cool.
 "# login" 
 "# login" 
+
+Y cuando ya esté todo levantado hará falta instalar las dependencias con composer con `docker-compose run php composer install`
+

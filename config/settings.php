@@ -16,10 +16,11 @@ return [
         ],
         //config base de datos
         'db' => [
-            'host' => 'localhost',
-            'user' => 'root',
-            'pass' => '',
-            'dbname' => 'login'
+            'host' => 'mysql',
+            'user' => getenv('MYSQL_USER'),
+            'pass' => getenv('MYSQL_PASSWORD'),
+            'dbname' => getenv('MYSQL_DATABASE')
+
         ],
     ],
 ];
