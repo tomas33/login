@@ -20,9 +20,7 @@ return function (App $app) {
         $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
         return $logger;
     };
-    $container['UserController'] = function ($c) {
-        return new app\controllers\UserController();
-    };
+    
     //base de datos
     $container['db'] = function ($c) {
         $db = $c['settings']['db'];
