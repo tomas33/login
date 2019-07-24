@@ -3,6 +3,7 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Pimple\Container;
 use app\Controllers\HelloWorldController;
 use app\Controllers\ActionController;
 return function (App $app) {
@@ -30,5 +31,5 @@ return function (App $app) {
         //$app->render();
         return $response;
     });
-    $app->get('/hello', app\Controllers\ActionController::class);
+    $app->get('/hello', app\Controllers\HelloWorldController::class);
 };
