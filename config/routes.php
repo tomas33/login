@@ -29,5 +29,5 @@ return function (App $app) {
         //$app->render();
         return $response;
     });
-    $app->get('/test', 'UserController:show');
+    $app->get('/hello', HelloWorldController::class);
 };
