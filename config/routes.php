@@ -4,12 +4,13 @@ use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use app\Controllers\HelloWorldController;
+
 return function (App $app) {
     $container = $app->getContainer();
 
     $app->get('/', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
-        
+
         $container->get('logger')->addInfo('desde slim.es');
         // Render index view
         return $container->get('renderer')->render($response, 'index.phtml', $args);
@@ -29,5 +30,5 @@ return function (App $app) {
         //$app->render();
         return $response;
     });
-    $app->get('/hello', app\Controllers\HelloWorldController::class);
+    $app->get('/hello', HelloWorldController::class);
 };

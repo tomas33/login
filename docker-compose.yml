@@ -5,22 +5,13 @@ volumes:
         driver: local
 
 services:
-    slim:
-        image: php:7-alpine
-        working_dir: /var/www
-        command: php -S 0.0.0.0:8080 -t public
-        environment:
-            docker: "true"
+    php:
         ports:
-            - 8080:8080
-
-            - .:/var/www
-
+            - "9000:9000"
+        volumes:
             - .:/app
         build:
             context: .
-        env_file:
-            - .env
 
     nginx:
         image: nginx:1.15.5-alpine

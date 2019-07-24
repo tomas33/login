@@ -8,6 +8,10 @@
 
 namespace app\controllers;
 
+use Psr\Container\ContainerInterface;
+use Slim\Http\Request;
+use Slim\Http\Response;
+
 class HelloWorldController {
 
     protected $ci;
