@@ -11,5 +11,5 @@ use Slim\App;
 
 $container = $app->getContainer();
 $container[HelloWorldController::class] = function ($c) {
-        return new App\Controllers\HelloWorldController;
+        return new HelloWorldController;
     };
