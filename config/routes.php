@@ -3,7 +3,7 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use app\Controllers\HelloWorldController;
+use App\Controllers\HelloWorldController;
 
 return function (App $app) {
     $container = $app->getContainer();
