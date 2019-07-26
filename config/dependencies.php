@@ -34,7 +34,7 @@ return function (App $app) {
 $container = $app->getContainer();
 
 // Registrar componente al contenedor
-$container['view'] = function ($container) {
+$container['view'] = function ($c) {
     $view = new \Slim\Views\Twig('../templates', [
         'cache' => '../cache'
     ]);

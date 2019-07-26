@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace app\controllers;
+namespace App\Controllers;
 
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
@@ -15,9 +15,10 @@ use Slim\Http\Response;
 class HelloWorldController {
 
     protected $ci;
-
+    protected $views;
     public function __construct(ContainerInterface $ci) {
         $this->ci = $ci;
+        $this->views;
     }
 
     public function __invoke(Request $request, Response $response, $args = []) {

@@ -6,10 +6,10 @@
  * and open the template in the editor.
  */
 
-use app\controllers\HelloWorldController;
+use App\Controllers\HelloWorldController;
 use Slim\App;
 
 $container = $app->getContainer();
 $container[HelloWorldController::class] = function ($c) {
-        return new app\Controllers\HelloWorldController;
+        return new App\Controllers\HelloWorldController;
     };
