@@ -11,18 +11,20 @@ namespace App\Controllers;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\Twig as View;
 
 class HelloWorldController {
 
-    protected $ci;
+    
     protected $views;
-    public function __construct(ContainerInterface $ci) {
-        $this->ci = $ci;
-        $this->views;
+
+    public function __construct(Views $views) {
+        
+        return $this->View = $views;
     }
 
-    public function __invoke(Request $request, Response $response, $args = []) {
-        return $response->write("Hello World");
-    }
+    /*public function __invoke(Request $request, Response $response, $args = []) {
+        return $views->render($response, 'helloworld.twig');
+    }*/
 
 }
