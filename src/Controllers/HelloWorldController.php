@@ -15,9 +15,10 @@ use Slim\Http\Response;
 class HelloWorldController {
 
     protected $ci;
-
+    protected $views;
     public function __construct(ContainerInterface $ci) {
         $this->ci = $ci;
+        $this->views;
     }
 
     public function __invoke(Request $request, Response $response, $args = []) {
