@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace app\controllers;
+namespace App\Controllers;
 
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
