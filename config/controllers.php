@@ -10,6 +10,6 @@ use App\Controllers\HelloWorldController;
 
 $container = $app->getContainer();
 $container[HelloWorldController::class] = function ($c) {
-   
-    return new HelloWorldController( $view = $c->get("view"));
+
+    return new HelloWorldController($view = $c->get("view"));
 };

@@ -31,6 +31,7 @@ return function (App $app) {
         return $pdo;
     };
     // Get container
+
     $container = $app->getContainer(); //este es necerasio?
 // Registrar componente al contenedor
     $container['view'] = function ($c) {
