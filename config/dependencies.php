@@ -20,7 +20,7 @@ return function (App $app) {
         $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
         return $logger;
     };
-    
+
     //base de datos
     $container['db'] = function ($c) {
         $db = $c['settings']['db'];
@@ -31,19 +31,18 @@ return function (App $app) {
         return $pdo;
     };
     // Get container
-$container = $app->getContainer();
-
+    $container = $app->getContainer(); //este es necerasio?
 // Registrar componente al contenedor
-$container['view'] = function ($c) {
-    $view = new \Slim\Views\Twig('../templates', [
-        'cache' => '../cache'
-    ]);
+    $container['view'] = function ($c) {
+        //$settings = $c->get('settings'); //paso por settings
+        $view = new \Slim\Views\Twig('../templates', [
+            'cache' => '../cache'
+        ]);
 
-    // Instantiate and add Slim specific extension
-    $router = $container->get('router');
-    $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
-    $view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
+        // Add extensions
+        $view->addExtension(new Slim\Views\TwigExtension($c->get('router'), $c->get('request')->getUri()));
+        $view->addExtension(new Twig_Extension_Debug());
 
-    return $view;
-};
+        return $view;
+    };
 };
