@@ -7,7 +7,6 @@
  */
 
 use App\Controllers\HelloWorldController;
-use Slim\App;
 
 $container = $app->getContainer();
 $container[HelloWorldController::class] = function ($c) {
