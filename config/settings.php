@@ -21,7 +21,6 @@ return [
             'user' => getenv('MYSQL_USER'),
             'pass' => getenv('MYSQL_PASSWORD'),
             'dbname' => getenv('MYSQL_DATABASE')
-
         ],
     ],
 ];

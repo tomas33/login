@@ -2,6 +2,7 @@
 
 use Slim\App;
 use Slim\Views\TwigExtension;
+use Twig\Environment;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -28,16 +29,17 @@ return function (App $app) {
     // Get container
 // Registrar componente al contenedor
     $container['view'] = function ($c) {
-        $settings = $c->get('settings')['renderer']; //paso por settings
-        $view = new \Slim\Views\Twig($settings['template_path'], [
-            'cache' => 'cache_path'
-        ]);
+        $settings = $c->get('settings')['renderer'];
+        $view = new \Slim\Views\Twig(
+                $settings['template_path'],
+                $settings[ 'cache_path']
+        );
 
         // Add extensions
         $view->addExtension(new TwigExtension($c->get('router'),
                         $c->get('request')->getUri()));
-        $view->addExtension(new \Twig\Extension\DebugExtension());
-
+        $view->addExtension(new DebugExtension());
+        $view->addExtension(new \Twig\Environment($loader,['cache' => true]));
         return $view;
     };
 };
