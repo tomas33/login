@@ -2,7 +2,7 @@
 
 use Slim\App;
 use Slim\Views\TwigExtension;
-use Twig\Environment;
+use Twig\Extension\DebugExtension;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -39,7 +39,7 @@ return function (App $app) {
         $view->addExtension(new TwigExtension($c->get('router'),
                         $c->get('request')->getUri()));
         $view->addExtension(new DebugExtension());
-        $view->addExtension(new \Twig\Environment($loader,['cache' => true]));
+        
         return $view;
     };
 };
