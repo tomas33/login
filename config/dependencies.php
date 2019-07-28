@@ -31,8 +31,8 @@ return function (App $app) {
     $container['view'] = function ($c) {
         $settings = $c->get('settings')['renderer'];
         $view = new \Slim\Views\Twig(
-                $settings['template_path'],
-                $settings[ 'cache_path']
+                [$settings[ 'template_path']],
+                ['cache' => $settings[ 'cache_path']]
         );
 
         // Add extensions

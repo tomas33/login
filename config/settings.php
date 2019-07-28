@@ -7,7 +7,7 @@ return [
         // Renderer settings
         'renderer' => [
             'template_path' => __DIR__ . '/../templates/',
-            'cache_patch' => __DIR__ . '/../cache/',
+            'cache_path' => __DIR__ . '/../cache/',
         ],
         // Monolog settings
         'logger' => [
