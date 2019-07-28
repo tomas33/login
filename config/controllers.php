@@ -3,7 +3,7 @@
 use App\Controllers\HelloWorldController;
 
 $container = $app->getContainer();
-$container[HelloWorldController::class] = function ($c) {
 
+$container[HelloWorldController::class] = function ($c) {
     return new HelloWorldController($c->get("view"));
 };

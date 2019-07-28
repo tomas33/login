@@ -1,6 +1,10 @@
 <?php
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Monolog\Processor\UidProcessor;
 use Slim\App;
+use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 use Twig\Extension\DebugExtension;
 
@@ -11,9 +15,9 @@ return function (App $app) {
     $container['logger'] = function ($c) {
         $settings = $c->get('settings')['logger'];
 
-        $logger = new \Monolog\Logger($settings['name']);
-        $logger->pushProcessor(new \Monolog\Processor\UidProcessor());
-        $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
+        $logger = new Logger($settings['name']);
+        $logger->pushProcessor(new UidProcessor());
+        $logger->pushHandler(new StreamHandler($settings['path'], $settings['level']));
         return $logger;
     };
 
@@ -26,20 +30,19 @@ return function (App $app) {
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         return $pdo;
     };
-    // Get container
-// Registrar componente al contenedor
+
+    // Registrar componente al contenedor
     $container['view'] = function ($c) {
-        $settings = $c->get('settings')['renderer'];
-        $view = new \Slim\Views\Twig(
+        $settings = $c->get('settings')['twig'];
+        $view = new Twig(
                 [$settings[ 'template_path']],
                 ['cache' => $settings[ 'cache_path']]
         );
 
         // Add extensions
-        $view->addExtension(new TwigExtension($c->get('router'),
-                        $c->get('request')->getUri()));
+        $view->addExtension(new TwigExtension($c->get('router'), $c->get('request')->getUri()));
         $view->addExtension(new DebugExtension());
-        
+
         return $view;
     };
 };
