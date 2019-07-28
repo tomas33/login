@@ -1,27 +1,23 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace App\Controllers;
 
-use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\Twig;
 
 class HelloWorldController {
 
-    protected $ci;
+    private $twig;
 
-    public function __construct(ContainerInterface $ci) {
-        $this->ci = $ci;
+    public function __construct(Twig $twig) {
+
+        $this->twig = $twig;
+        
     }
 
     public function __invoke(Request $request, Response $response, $args = []) {
-        return $response->write("Hello World");
+        return $this->twig->render($response, 'helloworld.twig');
     }
-
+    
 }

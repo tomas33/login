@@ -12,10 +12,11 @@
         }
     ],
     "require": {
-        "slim/slim": "^3.1",
-        "slim/php-view": "^2.0",
         "monolog/monolog": "^1.17",
-        "robmorgan/phinx": "^0.5.1"
+        "robmorgan/phinx": "^0.5.1",
+        "slim/php-view": "^2.0",
+        "slim/slim": "^3.1",
+        "slim/twig-view": "^2.5"
     },
     "autoload": {
         "psr-4": {
@@ -40,3 +41,4 @@
         "test": "phpunit"
     }
 }
+

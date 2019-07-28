@@ -1,15 +1,11 @@
 <?php
 
 use Slim\App;
+use Slim\Views\TwigExtension;
+use Twig\Extension\DebugExtension;
 
 return function (App $app) {
     $container = $app->getContainer();
-
-    // view renderer
-    $container['renderer'] = function ($c) {
-        $settings = $c->get('settings')['renderer'];
-        return new \Slim\Views\PhpRenderer($settings['template_path']);
-    };
 
     // monolog
     $container['logger'] = function ($c) {
@@ -20,7 +16,7 @@ return function (App $app) {
         $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
         return $logger;
     };
-    
+
     //base de datos
     $container['db'] = function ($c) {
         $db = $c['settings']['db'];
@@ -29,5 +25,21 @@ return function (App $app) {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         return $pdo;
+    };
+    // Get container
+// Registrar componente al contenedor
+    $container['view'] = function ($c) {
+        $settings = $c->get('settings')['renderer'];
+        $view = new \Slim\Views\Twig(
+                [$settings[ 'template_path']],
+                ['cache' => $settings[ 'cache_path']]
+        );
+
+        // Add extensions
+        $view->addExtension(new TwigExtension($c->get('router'),
+                        $c->get('request')->getUri()));
+        $view->addExtension(new DebugExtension());
+        
+        return $view;
     };
 };
