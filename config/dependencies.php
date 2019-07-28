@@ -1,5 +1,5 @@
 <?php
-
+namespace Twig\Extension;
 use Slim\App;
 
 return function (App $app) {
@@ -42,7 +42,7 @@ return function (App $app) {
 
         // Add extensions
         $view->addExtension(new Slim\Views\TwigExtension($c->get('router'), $c->get('request')->getUri()));
-        $view->addExtension(new Twig_Extension_Debug());
+        $view->addExtension(new DebugExtension());
 
         return $view;
     };
