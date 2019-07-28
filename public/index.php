@@ -11,4 +11,6 @@ $dependencies($app);
 $routes = require __DIR__ . '/../config/routes.php';
 $routes($app);
 
+$controllers = require __DIR__ . '/../config/controllers.php';
+
 $app->run();

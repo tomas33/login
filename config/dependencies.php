@@ -1,16 +1,10 @@
 <?php
 
 use Slim\App;
-use Twig\Extension;
+use Slim\Views\TwigExtension;
 
 return function (App $app) {
     $container = $app->getContainer();
-
-    // view renderer
-    $container['renderer'] = function ($c) {
-        $settings = $c->get('settings')['renderer'];
-        return new \Slim\Views\PhpRenderer($settings['template_path']);
-    };
 
     // monolog
     $container['logger'] = function ($c) {
@@ -32,13 +26,11 @@ return function (App $app) {
         return $pdo;
     };
     // Get container
-
-    
 // Registrar componente al contenedor
     $container['view'] = function ($c) {
-        //$settings = $c->get('settings'); //paso por settings
-        $view = new \Slim\Views\Twig('../templates', [
-            'cache' => '../cache'
+        $settings = $c->get('settings')['renderer']; //paso por settings
+        $view = new \Slim\Views\Twig($settings['template_path'], [
+            'cache' => 'cache_path'
         ]);
 
         // Add extensions

@@ -19,5 +19,5 @@ class HelloWorldController {
     public function __invoke(Request $request, Response $response, $args = []) {
         return $this->twig->render($response, 'helloworld.twig');
     }
-
+    
 }
