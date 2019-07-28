@@ -1,8 +1,7 @@
 <?php
 
-namespace Twig\Extension;
-
 use Slim\App;
+use Twig\Extension;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -34,7 +33,7 @@ return function (App $app) {
     };
     // Get container
 
-    $container = $app->getContainer(); //este es necerasio?
+    
 // Registrar componente al contenedor
     $container['view'] = function ($c) {
         //$settings = $c->get('settings'); //paso por settings
@@ -45,7 +44,7 @@ return function (App $app) {
         // Add extensions
         $view->addExtension(new TwigExtension($c->get('router'),
                         $c->get('request')->getUri()));
-        $view->addExtension(new DebugExtension());
+        $view->addExtension(new \Twig\Extension\DebugExtension());
 
         return $view;
     };
