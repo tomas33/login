@@ -13,6 +13,7 @@
     ],
     "require": {
         "friendsofphp/php-cs-fixer": "^2.15",
+        "doctrine/orm": " 2.6.2",
         "monolog/monolog": "^1.17",
         "robmorgan/phinx": "^0.5.1",
         "slim/php-view": "^2.0",
