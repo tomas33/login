@@ -8,12 +8,13 @@ namespace App\Domain;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Test
+ * Usuarios
  *
- * @ORM\Table(name="test")
+ * @ORM\Table(name="Usuarios")
  * @ORM\Entity
  */
 class Usuarios {
+
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -21,25 +22,26 @@ class Usuarios {
      */
     private $id;
 
+    /**
+     * @ORM\Column(name="Username", type="string", length=255)
+     */
+    private $Username;
 
     /**
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="Email", type="integer", length=3)
      */
-    private $name;
-
+    private $Email;
 
     /**
-     * @ORM\Column(name="age", type="integer", length=3)
+     * @ORM\Column(name="Password", type="string", length=255)
      */
-    private $age;
-
+    private $Password;
 
     public function __get($property) {
 
         if (property_exists($this, $property)) {
             return $this->$property;
         }
-
     }
 
     public function __set($property, $value) {
@@ -47,7 +49,7 @@ class Usuarios {
         if (property_exists($this, $property)) {
 
             $this->$property = $value;
-
         }
     }
+
 }
