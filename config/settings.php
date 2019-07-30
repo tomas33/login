@@ -36,7 +36,7 @@ return [
                 'dbname' => 'login',
                 'user' => 'root',
                 'password' => '',
-                'charset' => 'utf-8'
+                'charset' => 'UTF8'
             ]
         ]
     ],
