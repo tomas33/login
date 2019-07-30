@@ -11,7 +11,7 @@ use Slim\Container;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$container = new Container(require __DIR__ . '/settings.php');
+$container = new Container(require __DIR__ . '/config/settings.php');
 
 $container[EntityManager::class] = function (Container $container): EntityManager {
     $config = Setup::createAnnotationMetadataConfiguration(
