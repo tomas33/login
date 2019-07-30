@@ -3,7 +3,7 @@
 //Una vez creada la entidad ejecutamos la consola de Doctrine para que cree esta tabla en la base de datos
 //php vendor/bin/doctrine orm:schema-tool:create
 
-namespace Custom\Entity;
+namespace App\Domain;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="test")
  * @ORM\Entity
  */
-class Test {
+class Usuarios {
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
