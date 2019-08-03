@@ -8,7 +8,7 @@ return [
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
         'twig' => [
             'template_path' => __DIR__ . '/../templates/',
-            'cache_path' => __DIR__ . '/../cache/',
+            'cache_path' => __DIR__ . '/../cache/twig',
         ],
         'logger' => [
             'name' => 'slim-app',
