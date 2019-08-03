@@ -1,8 +1,5 @@
 <?php
 
-//Una vez creada la entidad ejecutamos la consola de Doctrine para que cree esta tabla en la base de datos
-//php vendor/bin/doctrine orm:schema-tool:create
-
 namespace App\Domain;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -23,33 +20,18 @@ class Usuarios {
     private $id;
 
     /**
-     * @ORM\Column(name="Username", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255)
      */
-    private $Username;
+    private $username;
 
     /**
-     * @ORM\Column(name="Email", type="integer", length=3)
+     * @ORM\Column(name="email", type="integer", length=3)
      */
-    private $Email;
+    private $email;
 
     /**
-     * @ORM\Column(name="Password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=255)
      */
-    private $Password;
-
-    public function __get($property) {
-
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }
-    }
-
-    public function __set($property, $value) {
-
-        if (property_exists($this, $property)) {
-
-            $this->$property = $value;
-        }
-    }
+    private $password;
 
 }

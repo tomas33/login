@@ -1,7 +1,5 @@
 <?php
 
-// cli-config.php
-
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Slim\Container;
