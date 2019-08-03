@@ -1,9 +1,9 @@
 <?php
 
 use Slim\App;
-use App\Controllers\UserRepository;
+use App\Controllers\RegisterController;
 
 return function (App $app) {
     $app->get('/hello', HelloWorldController::class);
-    $app->post('/registro', UserRepository::class);
+    $app->post('/registro', RegisterController::class);
 };
