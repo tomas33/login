@@ -2,6 +2,14 @@
 
 namespace App\Controllers;
 
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use Doctrine\ORM\Tools\Setup;
+use Slim\Container;
+use App\Domain\Usuarios;
+
 class SignUpController{
 
     /**
