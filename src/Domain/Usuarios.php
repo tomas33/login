@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class user {
+class User {
 
     /**
      * @ORM\Column(name="id", type="integer")
