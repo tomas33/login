@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class RegisterController {
+class SignUpController{
 
     /**
      * @var EntityManager
