@@ -16,5 +16,4 @@ $routes($app);
 
 $controllers = require __DIR__ . '/../config/controllers.php';
 
-
 $app->run();
