@@ -9,5 +9,5 @@ $container[HelloWorldController::class] = function ($c) {
     return new HelloWorldController($c->get("view"));
 };
 $container[SingUpContrller::class] = function ($c) {
-    return new SingUpContrller($container[EntityManager::class]);
+    return new SingUpContrller($c->get("EntityManager"));
 };
