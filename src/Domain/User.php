@@ -5,7 +5,7 @@ namespace App\Domain;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Usuarios
+ * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity
