@@ -49,9 +49,8 @@ return function (App $app) {
 
         return $view;
     };
-    $container = new Container(require __DIR__ . '/config/settings.php');
 
-$container[EntityManager::class] = function (Container $container): EntityManager {
+    $container[EntityManager::class] = function (Container $container): EntityManager {
     $config = Setup::createAnnotationMetadataConfiguration(
         $container['settings']['doctrine']['metadata_dirs'],
         $container['settings']['doctrine']['dev_mode']
