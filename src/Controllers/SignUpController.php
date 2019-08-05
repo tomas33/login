@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Doctrine\ORM\Tools\Setup;
 use Slim\Container;
-use App\Domain\Usuarios;
+use App\Domain\User;
 
 class SignUpController{
 
@@ -17,7 +17,7 @@ class SignUpController{
      */
     private $em;
 
-    public function __construct(EntityManager $em) {
+    public function __construct(User $em) {
         $this->em = $em;
     }
 
