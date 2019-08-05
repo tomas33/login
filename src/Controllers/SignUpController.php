@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
@@ -17,7 +16,7 @@ class SignUpController{
      */
     private $em;
 
-    public function __construct(User $em) {
+    public function __construct(EntityManager $em) {
         $this->em = $em;
     }
 
