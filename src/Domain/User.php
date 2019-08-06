@@ -17,4 +17,23 @@ class User {
         $this->email    = $email;
         $this->password = $password;
     }
+    public function id()
+{
+    return $this->id;
+}
+
+public function username(): string
+{
+    return $this->username;
+}
+
+public function email(): string
+{
+    return $this->email;
+}
+
+public function password(): string
+{
+    return $this->password;
+}
 }
