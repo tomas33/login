@@ -7,8 +7,8 @@
     <entity name="User" table="users">
 
         <indexes>
-            <index name="name_idx" columns="name"/>
-            <index columns="user_email"/>
+            <index name="id" columns="id"/>
+            <index columns="id"/>
         </indexes>
 
         <id name="id" type="integer" column="id">
@@ -17,8 +17,8 @@
         </id>
 
         <field name="name" column="name" type="string" length="50" nullable="true" unique="true" />
-        <field name="email" column="user_email" type="string" column-definition="CHAR(32) NOT NULL" />
-        <field name="password" column="user_password" type="string" column-definition="CHAR(32) NOT NULL" />
+        <field name="email" column="email" type="string" column-definition="CHAR(32) NOT NULL" />
+        <field name="password" column="password" type="string" column-definition="CHAR(32) NOT NULL" />
     </entity>
 
 </doctrine-mapping>
