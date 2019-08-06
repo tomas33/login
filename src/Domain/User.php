@@ -4,34 +4,17 @@ namespace App\Domain;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * User
- *
- * @ORM\Table(name="user")
- * @ORM\Entity
- */
+
 class User {
 
-    /**
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
     private $id;
-
-    /**
-     * @ORM\Column(name="username", type="string", length=255)
-     */
     private $username;
-
-    /**
-     * @ORM\Column(name="email", type="integer", length=3)
-     */
     private $email;
-
-    /**
-     * @ORM\Column(name="password", type="string", length=255)
-     */
     private $password;
-
+    public function __construct (string $username ,string $email, string $password)
+    {
+        $this->username = $username;
+        $this->email    = $email;
+        $this->password = $password;
+    }
 }
