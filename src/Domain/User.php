@@ -36,4 +36,5 @@ public function password(): string
 {
     return $this->password;
 }
+
 }

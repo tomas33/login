@@ -2,9 +2,7 @@
 
 namespace App\Controllers;
 
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
-use Doctrine\ORM\Tools\Setup;
+
 use Slim\Container;
 use App\Domain\User;
 
