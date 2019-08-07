@@ -12,6 +12,8 @@ use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Doctrine\ORM\Tools\Setup;
+use Slim\Container;
+
 return function (App $app) {
     $container = $app->getContainer();
 
@@ -40,7 +42,7 @@ return function (App $app) {
         return $view;
     };
 
-    $container[EntityManager::class] = function (Container $container): EntityManager {
+    $container[EntityManager::class] = function (Container $c): EntityManager {
     $config = Setup::createAnnotationMetadataConfiguration(
         $container['settings']['doctrine']['metadata_dirs'],
         $container['settings']['doctrine']['dev_mode']
