@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 use Slim\Container;
 use App\Domain\User;
+use Doctrine\ORM\Tools\Setup;
 
 class SignUpController{
 
@@ -13,11 +14,12 @@ class SignUpController{
      */
     private $em;
 
-    public function __construct(EntityManager $em) {
+    public function __construct($em) {
         $this->em = $em;
     }
 
     public function __invoke(string $username ,string $email, string $password): User {
+       
         $user = new User($username,$email, $password);
 
         $this->em->persist($user);
