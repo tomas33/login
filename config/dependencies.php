@@ -3,13 +3,13 @@
 
 
 use Doctrine\Common\Cache\FilesystemCache;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
+use Twig\Extension\DebugExtension;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -46,8 +46,8 @@ return function (App $app) {
     );
 
     $config->setMetadataDriverImpl(
-        new XmlDriver(
-            new XmlReader,
+        new AnnotationDriver(
+            new AnnotationReader,
             $container['settings']['doctrine']['metadata_dirs']
         )
     );
