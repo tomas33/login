@@ -1,11 +1,16 @@
 <?php
 
 
-
-
+use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver;
+use Doctrine\ORM\Mapping\Driver\XmlDriver;
+use Doctrine\ORM\Tools\Setup;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
+use Slim\App;
+use Slim\Container;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 use Twig\Extension\DebugExtension;
@@ -20,6 +25,7 @@ return function (App $app) {
         $logger = new Logger($settings['name']);
         $logger->pushProcessor(new UidProcessor());
         $logger->pushHandler(new StreamHandler($settings['path'], $settings['level']));
+
         return $logger;
     };
 
@@ -27,8 +33,8 @@ return function (App $app) {
     $container['view'] = function ($c) {
         $settings = $c->get('settings')['twig'];
         $view = new Twig(
-                [$settings[ 'template_path']],
-                ['cache' => $settings[ 'cache_path']]
+            [$settings['template_path']],
+            ['cache' => $settings['cache_path']]
         );
 
         // Add extensions
@@ -38,31 +44,31 @@ return function (App $app) {
         return $view;
     };
 
-    $container[EntityManager::class]= function (Container $c):EntityManager {
-    $config = Setup::createXMLMetadataConfiguration(
-        $container['settings']['doctrine']['metadata_dirs'],
-        $container['settings']['doctrine']['dev_mode']
-    );
+    $container[EntityManager::class] = function (Container $c): EntityManager {
+        $config = Setup::createXMLMetadataConfiguration(
+            $c['settings']['doctrine']['metadata_dirs'],
+            $c['settings']['doctrine']['dev_mode']
+        );
 
-    $config->setMetadataDriverImpl(
-        new AnnotationDriver(
-            new AnnotationReader,
-            $container['settings']['doctrine']['metadata_dirs']
-        )
-    );
+        $namespaces = array(
+            __DIR__.'/../src/Domain/Mapping' => 'App\Domain',
+        );
 
-    $config->setMetadataCacheImpl(
-        new FilesystemCache(
-            $container['settings']['doctrine']['cache_dir']
-        )
-    );
+        $driver = new SimplifiedXmlDriver($namespaces);
+
+        $config->setMetadataDriverImpl($driver);
+
+        $config->setMetadataCacheImpl(
+            new FilesystemCache(
+                $c['settings']['doctrine']['cache_dir']
+            )
+        );
+
+        return EntityManager::create(
+            $c['settings']['doctrine']['connection'],
+            $config
+        );
     };
-    return EntityManager::create(
-        $container['settings']['doctrine']['connection'],
-        $config);
- 
 
-
-return $container;
-
+    return $container;
 };

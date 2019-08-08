@@ -3,4 +3,5 @@
 /logs/
 .env
 /cache/
-/.vscoge/
+/.php_cs.cache
+/.vscode/
