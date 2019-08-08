@@ -22,3 +22,5 @@ Una vez instalado docker simplemente se tendrá que ejecutar `docker-compose up 
 Consola de doctrine: `docker-compose exec php php vendor/bin/doctrine`
 
 Instalar dependencias composer: `docker-compose exec php composer install`
+
+Añadir los hooks de git: `cp -R githooks/* .git/hooks/`
