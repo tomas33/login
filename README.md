@@ -5,7 +5,7 @@ de desarrollo como MVC, ADR, contenedor de dependencias, routing, dependencias c
 
 El único propósito es el de aprender y mejorar las habilidades de programación así como toda la parte de testing.
 
-## Instalar la aplicación
+## Iniciar la aplicación
 
 Lo primero que se necesita para que la aplicación funcione es tener docker instalado en la máquina donde se va a 
 desarrollar.
@@ -17,18 +17,8 @@ y poner los valores que se deseen.
 
 Una vez instalado docker simplemente se tendrá que ejecutar `docker-compose up -d` para levantar todos los servicios.
 
-To run the application in development, you can run these commands 
+## Comandos útiles
 
-	cd [my-app-name]
-	php composer.phar start
+Consola de doctrine: `docker-compose exec php php vendor/bin/doctrine`
 
-Run this command in the application directory to run the test suite
-
-	php composer.phar test
-
-That's it! Now go build something cool.
-"# login" 
-"# login" 
-
-Y cuando ya esté todo levantado hará falta instalar las dependencias con composer con `docker-compose run php composer install`
-
+Instalar dependencias composer: `docker-compose exec php composer install`
