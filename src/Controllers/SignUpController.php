@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-
 use App\Domain\User;
 use Doctrine\ORM\EntityManager;
 use Slim\Http\Request;
