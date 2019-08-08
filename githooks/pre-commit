@@ -6,7 +6,7 @@ NC='\033[0m' # No Color
 echo -e "$(tput rev) PHP CS Fixer...$(tput sgr0)"
 for path in `git diff-index --diff-filter=d  --cached --name-only HEAD $2`;do
     if [[ ${path} == *.php ]] ; then
-        docker exec -w /app php vendor/bin/php-cs-fixer fix ${path} --config .php_cs
+        docker-compose exec -w /app php vendor/bin/php-cs-fixer fix ${path} --config .php_cs
         git add ${path}
     fi
 done
