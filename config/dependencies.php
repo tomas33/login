@@ -1,18 +1,15 @@
 <?php
 
+
+
+use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Setup;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
-use Slim\App;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
-use Twig\Extension\DebugExtension;
-use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Cache\FilesystemCache;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
-use Doctrine\ORM\Tools\Setup;
-use Slim\Container;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -42,15 +39,15 @@ return function (App $app) {
         return $view;
     };
 
-    $container['EntityManager']= function (Container $c): EntityManager {
+    $container[EntityManager::class]= function (Container $c): EntityManager {
     $config = Setup::createXMLMetadataConfiguration(
         $container['settings']['doctrine']['metadata_dirs'],
         $container['settings']['doctrine']['dev_mode']
     );
 
     $config->setMetadataDriverImpl(
-        new AnnotationDriver(
-            new AnnotationReader,
+        new XmlDriver(
+            new XmlReader,
             $container['settings']['doctrine']['metadata_dirs']
         )
     );
