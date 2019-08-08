@@ -42,8 +42,8 @@ return function (App $app) {
         return $view;
     };
 
-    $container[EntityManager::class] = function (Container $c): EntityManager {
-    $config = Setup::createAnnotationMetadataConfiguration(
+    $container['EntityManager']= function (Container $c): EntityManager {
+    $config = Setup::createXMLMetadataConfiguration(
         $container['settings']['doctrine']['metadata_dirs'],
         $container['settings']['doctrine']['dev_mode']
     );

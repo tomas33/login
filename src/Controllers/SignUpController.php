@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 
-use Slim\Container;
 use App\Domain\User;
 use Doctrine\ORM\Tools\Setup;
 
