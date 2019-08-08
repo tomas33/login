@@ -40,7 +40,7 @@
         "sort-packages": true
     },
     "scripts": {
-        "start": "php -S localhost:8080 -t public",
+        "start": "docker-compose up -d",
         "test": "phpunit",
         "post-update-cmd": [
             "cp githooks/* .git/hooks/"
