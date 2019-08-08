@@ -28,14 +28,14 @@ return [
             // make sure the path exists and it is writable
             'cache_dir' => __DIR__ . '/../cache/doctrine',
             // you should add any other path containing annotated entity classes
-            'metadata_dirs' => [__DIR__ . '../../src/Domain'],
+            'metadata_dirs' => [__DIR__ . '/../src/Domain/Mapping'],
             'connection' => [
                 'driver' => 'pdo_mysql',
-                'host' => 'localhost',
+                'host' => 'mysql',
                 'port' => 3306,
-                'dbname' => 'login',
-                'user' => 'root',
-                'password' => '',
+                'dbname' => getenv('MYSQL_DATABASE'),
+                'user' => getenv('MYSQL_USER'),
+                'password' => getenv('MYSQL_PASSWORD'),
                 'charset' => 'UTF8'
             ]
         ]

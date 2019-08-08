@@ -4,7 +4,7 @@
       xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="User" table="users">
+    <entity name="App\Domain\User" table="users">
 
         <indexes>
             <index name="id" columns="id"/>
@@ -12,13 +12,13 @@
         </indexes>
 
         <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-            <sequence-generator sequence-name="tablename_seq" allocation-size="100" initial-value="1" />
+            <generator/>
+            <sequence-generator sequence-name="tablename_seq" allocation-size="100"/>
         </id>
 
-        <field name="name" column="name" type="string" length="50" nullable="true" unique="true" />
-        <field name="email" column="email" type="string" column-definition="CHAR(32) NOT NULL" />
-        <field name="password" column="password" type="string" column-definition="CHAR(32) NOT NULL" />
+        <field name="username" column="name" length="50" nullable="true" unique="true" />
+        <field name="email" column="email" column-definition="CHAR(32) NOT NULL" />
+        <field name="password" column="password" column-definition="CHAR(32) NOT NULL" />
     </entity>
 
 </doctrine-mapping>
