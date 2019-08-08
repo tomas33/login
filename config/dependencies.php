@@ -2,8 +2,7 @@
 
 
 
-use Doctrine\Common\Cache\FilesystemCache;
-use Doctrine\ORM\Tools\Setup;
+
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
@@ -39,7 +38,7 @@ return function (App $app) {
         return $view;
     };
 
-    $container[EntityManager::class]= function (Container $c): EntityManager {
+    $container[EntityManager::class]= function (Container $c):EntityManager {
     $config = Setup::createXMLMetadataConfiguration(
         $container['settings']['doctrine']['metadata_dirs'],
         $container['settings']['doctrine']['dev_mode']
@@ -57,12 +56,13 @@ return function (App $app) {
             $container['settings']['doctrine']['cache_dir']
         )
     );
-
+    };
     return EntityManager::create(
         $container['settings']['doctrine']['connection'],
-        $config
-    );
-};
+        $config);
+ 
+
 
 return $container;
+
 };

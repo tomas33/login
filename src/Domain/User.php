@@ -2,8 +2,6 @@
 
 namespace App\Domain;
 
-use Doctrine\ORM\Mapping as ORM;
-
 
 class User {
 
