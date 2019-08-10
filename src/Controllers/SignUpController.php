@@ -9,17 +9,19 @@ use Slim\Http\Response;
 use Slim\Http\StatusCode;
 use Slim\Views\Twig;
 
-class SignUpController extends HelloWorldController
+class SignUpController
 {
 
     /**
      * @var EntityManager
      */
     private $em;
-
-    public function __construct(EntityManager $em)
+    private $twig;
+    
+    public function __construct(EntityManager $em,\Slim\Views\Twig $twig)
     {
         $this->em = $em;
+        $this->twig = $twig;
     }
 
     public function __invoke(Request $request, Response $response, ?array $args = []): Response
@@ -33,6 +35,6 @@ class SignUpController extends HelloWorldController
         $this->em->persist($user);
         $this->em->flush();
 
-        return $this->twig->render($response, 'helloworld.twig');
+        return $this->twig->render($response, 'registro.twig');
     }
 }
