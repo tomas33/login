@@ -18,7 +18,7 @@
 
         <field name="username" column="name" length="50" nullable="true" unique="true" />
         <field name="email" column="email" column-definition="CHAR(32) NOT NULL" />
-        <field name="password" column="password" column-definition="CHAR(32) NOT NULL" />
+        <field name="password" column="password" column-definition="CHAR(255) NOT NULL" />
     </entity>
 
 </doctrine-mapping>

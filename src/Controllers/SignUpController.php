@@ -18,7 +18,7 @@ class SignUpController
     private $em;
     private $twig;
     
-    public function __construct(EntityManager $em,\Slim\Views\Twig $twig)
+    public function __construct(EntityManager $em,Twig $twig)
     {
         $this->em = $em;
         $this->twig = $twig;
@@ -28,7 +28,8 @@ class SignUpController
     {
         $username = $request->getParam('username');
         $email = $request->getParam('email');
-        $password = $request->getParam('password');
+        $crypt  = $request->getParam('password');
+        $password = password_hash($crypt, PASSWORD_DEFAULT);
 
         $user = new User($username, $email, $password);
 
