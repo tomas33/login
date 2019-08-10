@@ -7,8 +7,9 @@ use Doctrine\ORM\EntityManager;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Http\StatusCode;
+use Slim\Views\Twig;
 
-class SignUpController
+class SignUpController extends HelloWorldController
 {
 
     /**
@@ -32,6 +33,6 @@ class SignUpController
         $this->em->persist($user);
         $this->em->flush();
 
-        return $response->withStatus(StatusCode::HTTP_NO_CONTENT);
+        return $this->twig->render($response, 'helloworld.twig');
     }
 }
