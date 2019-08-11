@@ -19,7 +19,7 @@ return function (App $app) {
     $container = $app->getContainer();
 
     // monolog
-    $container['logger'] = function ($c) {
+    $container[logger::class] = function ($c) {
         $settings = $c->get('settings')['logger'];
 
         $logger = new Logger($settings['name']);
@@ -30,7 +30,7 @@ return function (App $app) {
     };
 
     // Registrar componente al contenedor
-    $container['view'] = function ($c) {
+    $container[Twig::class] = function ($c) {
         $settings = $c->get('settings')['twig'];
         $view = new Twig(
             [$settings['template_path']],
