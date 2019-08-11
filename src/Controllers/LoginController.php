@@ -8,7 +8,7 @@ use Slim\Views\Twig;
 
 class LoginController
 {
-    private $wig;
+    private $twig;
 
     public function __construct(Twig $twig)
     {
