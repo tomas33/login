@@ -15,12 +15,7 @@ return [
             'path' => __DIR__ . '/../logs/log-app.log',
             'level' => Logger::DEBUG,
         ],
-        'db' => [
-            'host' => 'mysql',
-            'user' => getenv('MYSQL_USER'),
-            'pass' => getenv('MYSQL_PASSWORD'),
-            'dbname' => getenv('MYSQL_DATABASE')
-        ],
+    
         'doctrine' => [
             // if true, metadata caching is forcefully disabled
             'dev_mode' => true,
