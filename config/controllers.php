@@ -11,9 +11,8 @@ $container[HelloWorldController::class] = function ($c) {
 };
 
 $container[SignUpController::class] = function ($c) {
-   $SignUpController = new SignUpController(
+    return new SignUpController(
         $c->get(EntityManager::class),
         $c->get("view")
     );
-    return SignUpController($SignUpController);
 };
