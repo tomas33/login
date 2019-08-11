@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 $container = $app->getContainer();
 
 $container[LoginController::class] = function ($c) {
-    return new HelloWorldController($c->get("view"));
+    return new LoginController($c->get("view"));
 };
 
 $container[SignUpController::class] = function ($c) {
