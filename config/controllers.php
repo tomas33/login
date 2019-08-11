@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\HelloWorldController;
+use App\Controllers\LoginController;
 use App\Controllers\SignUpController;
 use Doctrine\ORM\EntityManager;
 
