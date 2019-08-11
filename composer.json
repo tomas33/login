@@ -12,9 +12,10 @@
         }
     ],
     "require": {
-        "friendsofphp/php-cs-fixer": "^2.15",
         "ext-xmlreader": "*",
+        "bryanjhv/slim-session": "~3.0",
         "doctrine/orm": "^2.6",
+        "friendsofphp/php-cs-fixer": "^2.15",
         "monolog/monolog": "^1.17",
         "robmorgan/phinx": "^0.5.1",
         "slim/php-view": "^2.0",
