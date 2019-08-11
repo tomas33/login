@@ -6,7 +6,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
 
-class HelloWorldController
+class LoginController
 {
     private $twig;
 
