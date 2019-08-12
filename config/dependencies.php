@@ -30,7 +30,7 @@ return function (App $app) {
     };
 
     // Registrar componente al contenedor
-    $container[Twig::class] = function ($c) {
+    $container[Twing::class] = function ($c) {
         $settings = $c->get('settings')['twig'];
         $view = new Twig(
             [$settings['template_path']],

@@ -7,12 +7,12 @@ use Doctrine\ORM\EntityManager;
 $container = $app->getContainer();
 
 $container[LoginController::class] = function ($c) {
-    return new LoginController($c->get("view"));
+    return new LoginController($c->get(Twing::class));
 };
 
 $container[SignUpController::class] = function ($c) {
     return new SignUpController(
         $c->get(EntityManager::class),
-        $c->get("view")
+        $c->get(Twing::class)
     );
 };
