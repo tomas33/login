@@ -29,11 +29,15 @@ class LoginController
         $password = password_hash
         ($request->getParam('password'),
         PASSWORD_DEFAULT);
-
-        $query = $this->em->createNativeQuery('SELECT name FROM users WHERE name = ?');
-        $query->setParameter($username);
-        $user = $query->getResult();
         
+        $query = $this->em->createQuery('SELECT username.username,username.password FROM App\Domain\User username WHERE username.username = :name');
+        $query->setParameter('name', $username);
+        $user = $query->getResult(); 
+        
+        if ($username !=$user["username"])
+        {
+          echo 'login bien';
+        }
                 
         
         
