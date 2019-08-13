@@ -17,8 +17,8 @@
         </id>
 
         <field name="name" column="name" type="string" length="50" nullable="true" unique="true" />
-        <field name="email" column="email" type="string" column-definition="CHAR(32) NOT NULL" />
-        <field name="password" column="password" type="string" column-definition="CHAR(32) NOT NULL" />
+        <field name="email" column="email" type="string" column-definition="CHAR(255) NOT NULL" />
+        <field name="password" column="password" type="string" column-definition="CHAR(255) NOT NULL" />
     </entity>
 
 </doctrine-mapping>
