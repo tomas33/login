@@ -8,7 +8,9 @@ use Slim\Views\Twig;
 $container = $app->getContainer();
 
 $container[LoginController::class] = function ($c) {
-    return new LoginController($c->get(Twig::class));
+    return new LoginController(
+        $c->get(EntityManager::class),
+        $c->get(Twig::class));
 };
 
 $container[SignUpController::class] = function ($c) {

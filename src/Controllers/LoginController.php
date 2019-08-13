@@ -5,10 +5,10 @@ namespace App\Controllers;
 
 use App\Domain\User;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
-
 class LoginController
 {
     /**
@@ -19,7 +19,7 @@ class LoginController
 
     public function __construct(EntityManager $em,Twig $twig)
     {
-        $this->$em;
+        $this->em   = $em;
         $this->twig = $twig;
     }
 
@@ -29,13 +29,14 @@ class LoginController
         $password = password_hash
         ($request->getParam('password'),
         PASSWORD_DEFAULT);
-        $user = new User($username,$password);
 
-        $this->$em->findAll();
+        $query = $this->em->createNativeQuery('SELECT name FROM users WHERE name = ?');
+        $query->setParameter($username);
+        $user = $query->getResult();
         
                 
         
         
-        return $this->twig->render($response, 'helloworld.twig');
+        return var_dump($user);//$this->twig->render($response, 'helloworld.twig');
     }
 }
