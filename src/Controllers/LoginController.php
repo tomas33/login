@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 38bb3003644029858dd7342148662e3614a9ca50
 <?php
 
 namespace App\Controllers;
