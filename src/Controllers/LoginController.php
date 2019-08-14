@@ -36,7 +36,7 @@ class LoginController
     'password' => $password
 ]);
 
-        if ($username !=$user["username"])
+        if (is_null($user))
         {
           echo 'login bien';
         }
