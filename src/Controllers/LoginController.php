@@ -31,7 +31,7 @@ class LoginController
         ($request->getParam('password'),
         PASSWORD_DEFAULT);
         
-        $user = $this->em->getRepository(User::class)->findBy([
+        $user = $this->em->getRepository(User::class)->findOneBy([
     'username' => $username,
     'password' => $password
 ]);
