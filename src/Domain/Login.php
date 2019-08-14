@@ -3,6 +3,9 @@ namespace App\Domain;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Domain\User;
+/**
+ * @ORM\Entity(repositoryClass="App\Domain\User")
+ */
 class UserRepository extends EntityRepository
 {
     public function username()
