@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Domain\User;
+use App\Domain\Login;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Slim\Http\Request;
@@ -16,12 +16,11 @@ class LoginController
     private $em;
     private $twig;
 
-    public function __construct(EntityManager $em,Twig $twig,user $user)
+    public function __construct(EntityManager $em,Twig $twig)
     {
         $this->em   = $em;
         $this->twig = $twig;
-        $this->user = $user;
-        $user = new User();
+        
     }
 
     public function __invoke(Request $request, Response $response, $args = [])
@@ -32,10 +31,8 @@ class LoginController
         ($request->getParam('password'),
         PASSWORD_DEFAULT);
         
-        $query = $this->em->createQuery('SELECT username.username,username.password FROM App\Domain\User username WHERE username.username = :name');
-        $query->setParameter('name', $username);
-       /// $user = $query->getResult(); 
-        
+        $user = $this->em->getRepository('App\Domain\User')->getAllAdminUsers();
+
         if ($username !=$user["username"])
         {
           echo 'login bien';
