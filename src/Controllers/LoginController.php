@@ -31,7 +31,7 @@ class LoginController
         ($request->getParam('password'),
         PASSWORD_DEFAULT);
         
-        $user = $this->em->getRepository('App\Domain\User')->username();
+        $user = $this->em->getRepository(User::class)->username();
 
         if ($username !=$user["username"])
         {
