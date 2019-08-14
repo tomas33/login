@@ -31,7 +31,10 @@ class LoginController
         ($request->getParam('password'),
         PASSWORD_DEFAULT);
         
-        $user = $this->em->getRepository(User::class)->username();
+        $user = $this->em->getRepository(User::class)->findBy([
+    'username' => $username,
+    'password' => $password
+]);
 
         if ($username !=$user["username"])
         {
