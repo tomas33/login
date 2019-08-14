@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Domain\Login;
+use App\Domain\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Slim\Http\Request;
