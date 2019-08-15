@@ -38,11 +38,11 @@ class LoginController
 
         if (is_null($user))
         {
-          echo 'login bien';
+          return $this->twig->render($response, 'login-erroneo.html.twig');
         }
                 
         
         
-        return var_dump($user);//$this->twig->render($response, 'helloworld.twig');
+        return $this->twig->render($response, 'login-correcto.html.twig');
     }
 }
