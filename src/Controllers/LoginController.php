@@ -27,16 +27,13 @@ class LoginController
     {
         
         $username = $request->getParam('username');
-        $password = password_hash
-        ($request->getParam('password'),
-        PASSWORD_DEFAULT);
+        $password = $request->getParam('password');
         
-        $user = $this->em->getRepository(User::class)->findOneBy([
-    'username' => $username,
+        $user = crypt($this->em->getRepository(User::class)->findOneBy([
     'password' => $password
-]);
+]));
 
-        if (is_null($user))
+        if (password_verify('tomas',$user)== true)
         {
           return $this->twig->render($response, 'login-erroneo.html.twig');
         }
