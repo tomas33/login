@@ -40,7 +40,7 @@ class LoginController
             
           return $this->twig->render($response, 'login-erroneo.html.twig');
         }
-         if (password_verify($password, $password2)) {
+         if (password_verify($user->password(), $password)) {
             return $this->twig->render($response, 'login-erroneo.html.twig');
         }       
         
