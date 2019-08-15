@@ -34,17 +34,15 @@ class LoginController
         $user = $this->em->getRepository(User::class)->findOneBy([
     'username' => $username
 ]);
-        $password2 = $this->em->getRepository(User::class)->findOneBy([
-    'password' => $password
-]);
+
         if (is_null($user))
         {
-            if (password_verify($password, $password2)) {
-
-        }
+            
           return $this->twig->render($response, 'login-erroneo.html.twig');
         }
-                
+         if (password_verify($password, $password2)) {
+            return $this->twig->render($response, 'login-erroneo.html.twig');
+        }       
         
         
         return $this->twig->render($response, 'login-correcto.html.twig');
