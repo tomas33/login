@@ -36,6 +36,6 @@ class SignUpController
         $this->em->persist($user);
         $this->em->flush();
 
-        return $this->twig->render($response, 'registro.twig');
+        return $this->twig->render($response, 'mensaje-registro.html.twig');
     }
 }
