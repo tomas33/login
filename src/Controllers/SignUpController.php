@@ -33,25 +33,25 @@ class SignUpController
         
         
         $user = new User($username, $email, $password);
-        $args = [
-            'username'   => FILTER_SANITIZE_ENCODED,
-            'email'      => FILTER_VALIDATE_EMAIL, 
-            'password'   =>['FILTER_CALLBACK'=> LoginController::class]
-        ];
+    
 
-         $user = $this->em->getRepository(User::class)->findOneBy([
+         $userverify = $this->em->getRepository(User::class)->findOneBy([
     'username' => $username
 ]);
+        if (!is_null($userverify))
+        {
+            
+          return $this->twig->render($response, 'usuario-regiatrado-db.html.twig');
+        }
+        if (filter_var($email,FILTER_VALIDATE_EMAIL)){
+            
 
-        if (filter_var_array($user,$args)){
-            $this->em->persist($user);
-            $this->em->flush();
-
-            return $this->twig->render($response, 'mensaje-registro.html.twig');
+            return $this->twig->render($response, 'email-no-valido.html.twig');
 
         }
         
-
+            $this->em->persist($user);
+            $this->em->flush(); 
         return $this->twig->render($response, 'login-erroneo.html.twig');
     }
 }
