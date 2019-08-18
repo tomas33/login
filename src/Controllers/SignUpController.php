@@ -38,7 +38,7 @@ class SignUpController
     'username' => $username,
     'email'    => $email
 ]);
-        if (!is_null($userverify->username) and ($userverify->email))
+        if (!is_null($userverify->email))
         {
             return $this->twig->render($response, 'usuario-regiatrado-db.html.twig');
         }
