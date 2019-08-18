@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Domain\User;
-use Doctrine\ORM\EntityManager;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
