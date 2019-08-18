@@ -2,10 +2,12 @@
 
 namespace App\Controllers\UseCases;
 
-use App\controllers\SignUpController;
+use App\Domain\User;
+use Doctrine\ORM\EntityManager;
+
 class SignUpUseCase
 {
-        public function __invoke($username, $email, $password)
+        public function __invoke(EntityManager $em ,$username, $email, $password)
     {
     
         $user = new User($username, $email, $password);

@@ -6,9 +6,8 @@ use App\Domain\User;
 use Doctrine\ORM\EntityManager;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Slim\Http\StatusCode;
 use Slim\Views\Twig;
-use App\Controller\LoginController;
+use App\UseCases\signUpUseCases;
 class SignUpController
 {
 
@@ -49,8 +48,7 @@ class SignUpController
             return $this->twig->render($response, 'email-no-valido.html.twig');
         }
         
-            $this->em->persist($user);
-            $this->em->flush(); 
+          
         return $this->twig->render($response, 'login-erroneo.html.twig', array('tomas' => 'tomas'));
     }
 }
