@@ -35,8 +35,5 @@ class SignUpUseCase
             return $this->twig->render($response, 'email-no-valido.html.twig');
 
         }
-        
-          
-        return $this->twig->render($response, 'login-correcto.html.twig', array('tomas' => 'tomas'));
     }
 }
