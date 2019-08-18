@@ -40,18 +40,17 @@ class SignUpController
 ]);
         if (!is_null($userverify))
         {
-            
-          return $this->twig->render($response, 'usuario-regiatrado-db.html.twig');
+            var_dump($userverify);//return $this->twig->render($response, 'usuario-regiatrado-db.html.twig');
         }
         if (filter_var($email,FILTER_VALIDATE_EMAIL)){
-            
+            return $this->twig->render($response, 'login-correcto.html.twig');
 
+        }else {
             return $this->twig->render($response, 'email-no-valido.html.twig');
-
         }
         
             $this->em->persist($user);
             $this->em->flush(); 
-        return $this->twig->render($response, 'login-erroneo.html.twig');
+        return $this->twig->render($response, 'login-erroneo.html.twig', array('tomas' => 'tomas'));
     }
 }
