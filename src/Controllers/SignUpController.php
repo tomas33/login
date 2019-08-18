@@ -38,9 +38,9 @@ class SignUpController
          $userverify = $this->em->getRepository(User::class)->findOneBy([
     'username' => $username
 ]);
-        if (!is_null($userverify))
+        if (!is_null($userverify->username())||($userverify->email()))
         {
-            var_dump($userverify);//return $this->twig->render($response, 'usuario-regiatrado-db.html.twig');
+            return $this->twig->render($response, 'usuario-regiatrado-db.html.twig');
         }
         if (filter_var($email,FILTER_VALIDATE_EMAIL)){
             return $this->twig->render($response, 'login-correcto.html.twig');
