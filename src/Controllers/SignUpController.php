@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
-use App\UseCases\signUpUseCases;
+use App\UseCases\signUpUseCase;
 class SignUpController
 {
 
@@ -17,7 +17,7 @@ class SignUpController
     private $em;
     private $twig;
     
-    public function __construct(EntityManager $em,Twig $twig)
+    public function __construct(signUpUseCase $em,Twig $twig)
     {
         $this->em = $em;
         $this->twig = $twig;

@@ -7,9 +7,16 @@ use Doctrine\ORM\EntityManager;
 
 class SignUpUseCase
 {
-        public function __invoke(EntityManager $em ,$username, $email, $password)
+    private $em;
+    private $username;
+    private $email;
+    private $password;
+        public function __construct (EntityManager $em ,$username, $email, $password)
     {
-    
+        $this->em       = $em;
+        $this->username = $username;
+        $this->email    = $email;
+        $this->password = $password;
         $user = new User($username, $email, $password);
 
         $this->em->persist($user);
