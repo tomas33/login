@@ -17,7 +17,7 @@ class SignUpController
     private $em;
     private $twig;
     
-    public function __construct(signUpUseCase $em,Twig $twig)
+    public function __construct(SignUpUseCase $useCase,Twig $twig)
     {
         $this->em = $em;
         $this->twig = $twig;
@@ -30,24 +30,6 @@ class SignUpController
         $crypt  = $request->getParam('password');
         $password = password_hash($crypt, PASSWORD_DEFAULT);
         
-        
-        $user = new User($username, $email, $password);
-    
-
-         $userverify = $this->em->getRepository(User::class)->findOneBy([
-    'username' => $username,
-    'email'    => $email
-]);
-        if (!is_null($userverify->email))
-        {
-            return $this->twig->render($response, 'usuario-regiatrado-db.html.twig');
-        }
-        if (!filter_var($email,FILTER_VALIDATE_EMAIL)){
-            return $this->twig->render($response, 'email-no-valido.html.twig');
-
-        }
-        
-          
-        return $this->twig->render($response, 'login-correcto.html.twig', array('tomas' => 'tomas'));
+         return $this->twig->render($response, 'login-correcto.html.twig', array('tomas' => 'tomas'));
     }
 }
