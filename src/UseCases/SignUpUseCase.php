@@ -15,7 +15,7 @@ class SignUpUseCase
 
         public function __construct (EntityManager $em)
     {
-        $this->em       = $em;
+        $this->em = $em;
         
     }
         public function __invoke($username, $email, $password)
@@ -26,10 +26,10 @@ class SignUpUseCase
 ]);
         if (!is_null($user->email))
         {
-            return $this->throw = new \Exception();
+             $this->throw = new \Exception();
         }
         if (!filter_var($email,FILTER_VALIDATE_EMAIL)){
-            return $this->throw = new \Exception();
+             $this->throw = new \Exception();
 
         }
          $user = new User($username, $email, $password);
