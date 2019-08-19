@@ -1,6 +1,6 @@
 <?php
 
-use App\UsesCases\SignUpUseCase;
+use App\UseCases\SignUpUseCase;
 use Doctrine\ORM\EntityManager;
 
 $container = $app->getContainer();

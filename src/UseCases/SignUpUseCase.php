@@ -7,6 +7,10 @@ use Doctrine\ORM\EntityManager;
 
 class SignUpUseCase
 {
+    
+    /**
+     * @var EntityManager
+     */
     private $em;
 
         public function __construct (EntityManager $em)

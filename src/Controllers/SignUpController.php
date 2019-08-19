@@ -10,9 +10,7 @@ use App\UseCases\SignUpUseCase;
 class SignUpController
 {
 
-    /**
-     * @var EntityManager
-     */
+   
     private $useCase;
     private $twig;
     
@@ -25,11 +23,11 @@ class SignUpController
     public function __invoke(Request $request, Response $response, ?array $args = []): Response
     {
         $username = $request->getParam('username');
-        $email = $request->getParam('email');
-        $crypt  = $request->getParam('password');
+        $email    = $request->getParam('email');
+        $crypt    = $request->getParam('password');
         $password = password_hash($crypt, PASSWORD_DEFAULT);
         
-        $useCase = new useCase($username,$email,$password);
+        $this->useCase->__invoke($username,$email,$password);
         
          return $this->twig->render($response, 'login-correcto.html.twig', array('tomas' => 'tomas'));
     }
