@@ -18,7 +18,7 @@ class SignUpUseCase
         $this->em = $em;
         
     }
-        public function __invoke($username, $email, $password)
+        public function __invoke(object $username, object $email, object $password)
     {
          $user = $this->em->getRepository(User::class)->findOneBy([
             'username' => $username,
