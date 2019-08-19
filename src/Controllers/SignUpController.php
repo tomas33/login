@@ -27,7 +27,7 @@ class SignUpController
         $crypt    = $request->getParam('password');
         $password = password_hash($crypt, PASSWORD_DEFAULT);
         
-        $this->useCase->__invoke($username,$email,$password);
+        $this->useCase->__invoke($username, $email,$password);
         
          return $this->twig->render($response, 'login-correcto.html.twig', array('tomas' => 'tomas'));
     }

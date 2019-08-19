@@ -18,7 +18,7 @@ class SignUpUseCase
         $this->em = $em;
         
     }
-        public function __invoke(object $username, object $email, object $password)
+        public function __invoke(string $username, string $email, string $password)
     {
          $user = $this->em->getRepository(User::class)->findOneBy([
             'username' => $username,
@@ -26,10 +26,10 @@ class SignUpUseCase
 ]);
         if (!is_null($user->email))
         {
-             $this->throw = new \Exception();
+             throw new \Exception();
         }
         if (!filter_var($email,FILTER_VALIDATE_EMAIL)){
-             $this->throw = new \Exception();
+             throw new \Exception();
 
         }
          $user = new User($username, $email, $password);
