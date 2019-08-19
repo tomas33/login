@@ -15,4 +15,4 @@ $routes($app);
 
 $controllers = require __DIR__ . '/./config/controllers.php';
 
-$usecases = require __DIR__ . '/./config/Use-Cases.php';
+$usecases    = require __DIR__ . '/./config/use-cases.php';

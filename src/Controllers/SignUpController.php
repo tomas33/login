@@ -5,19 +5,20 @@ namespace App\Controllers;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
-use App\UseCases\signUpUseCase;
+use App\UseCases\SignUpUseCase;
+
 class SignUpController
 {
 
     /**
      * @var EntityManager
      */
-    private $em;
+    private $useCase;
     private $twig;
     
     public function __construct(SignUpUseCase $useCase,Twig $twig)
     {
-        $this->em = $em;
+        $this->useCase = $useCase;
         $this->twig = $twig;
     }
 
@@ -27,6 +28,8 @@ class SignUpController
         $email = $request->getParam('email');
         $crypt  = $request->getParam('password');
         $password = password_hash($crypt, PASSWORD_DEFAULT);
+        
+        $useCase = new useCase($username,$email,$password);
         
          return $this->twig->render($response, 'login-correcto.html.twig', array('tomas' => 'tomas'));
     }
