@@ -32,9 +32,8 @@ class SignUpController
         try {
             $this->useCase->__invoke($username, $email,$password);
         } catch (\Exception $e) {
-            return $this->twig->render($response, 'registro-ko.html.twig',array(
-                    'name' => $username,
-              ));   
+            return $this->twig->render($response, 'registro-ko.html.twig'
+              );   
         }
         
         
