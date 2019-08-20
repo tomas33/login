@@ -22,7 +22,10 @@ class SignUpController
         $this->twig = $twig;
     }
 
-     public function __invoke(RequestInterface $request, ResponseInterface $response, ?array $args = []): ResponseInterface
+     public function __invoke(
+         RequestInterface $request,
+         ResponseInterface $response, 
+         ?array $args = []): ResponseInterface
     {
         $username = $request->getParam('username');
         $email    = $request->getParam('email');
@@ -31,7 +34,7 @@ class SignUpController
         
         try {
             $this->useCase->__invoke($username, $email,$password);
-        } catch (\Exception $e) {
+        } catch (UserAlreadyExistException | \Exception $e) {
             return $this->twig->render($response, 'registro-ko.html.twig'
               );   
         }
