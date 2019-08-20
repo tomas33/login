@@ -6,8 +6,9 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
 use App\UseCases\SignUpUseCase;
-
+use App\Exceptions\UserAlreadyExistException;
 class SignUpController
 {
 
@@ -30,13 +31,13 @@ class SignUpController
         
         try {
             $this->useCase->__invoke($username, $email,$password);
-        } catch (Exception $e) {
-            return $this->twig->render($response, 'login-correcto.html.twig',array(
-                    'name' => $name,
+        } catch (\Exception $e) {
+            return $this->twig->render($response, 'registro-ko.html.twig',array(
+                    'name' => $username,
               ));   
         }
         
         
-         return $this->twig->render($response, 'login-correcto.html.twig');
+         return $this->twig->render($response, 'registro-ok.html.twig');
     }
 }

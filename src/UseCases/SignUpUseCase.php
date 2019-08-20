@@ -29,7 +29,7 @@ class SignUpUseCase
         
             if (!is_null($user))
         {
-                throw new UserAlreadyExistException($e->getMessage());
+                throw new UserAlreadyExistException('usuario registrado'.$e);
 
         }
 
