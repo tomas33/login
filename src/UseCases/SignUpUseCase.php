@@ -24,14 +24,26 @@ class SignUpUseCase
             'username' => $username,
             'email'    => $email
 ]);
-        if (!is_null($user->email))
+        
+        try {
+            if (!is_null($user))
         {
-             throw new \Exception();
+             throw new \Exception('usuario registrado');
         }
-        if (!filter_var($email,FILTER_VALIDATE_EMAIL)){
-             throw new \Exception();
+        
+        } catch (Exception $e) {
+            echo $e;
+        }
+       try {
+           if (!filter_var($email,FILTER_VALIDATE_EMAIL)){
+             throw new \Exception('email no valido');
 
         }
+       } catch (Exception $e) {
+           echo $e;
+       } 
+        
+
          $user = new User($username, $email, $password);
 
             $this->em->persist($user);
