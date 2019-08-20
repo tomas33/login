@@ -26,23 +26,17 @@ class SignUpUseCase
             'email'    => $email
 ]);
         
-        try {
+        
             if (!is_null($user))
         {
-             throw new \UserAlreadyExistException();
+             throw new InvalidArgumentException('usuario registrado');
         }
-        
-        } catch (Exception $e) {
-            echo $e;
-        }
-       try {
+
            if (!filter_var($email,FILTER_VALIDATE_EMAIL)){
-             throw new \Exception('email no valido');
+             throw new InvalidArgumentException('email no valido');
 
         }
-       } catch (Exception $e) {
-           echo $e;
-       } 
+       
         
 
          $user = new User($username, $email, $password);
