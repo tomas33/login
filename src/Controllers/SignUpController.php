@@ -29,9 +29,9 @@ class SignUpController
         
         try {
             $this->useCase->__invoke($username, $email,$password);
-        } catch (exception $e) {
+        } catch (\Exception $e) {
             return $this->twig->render($response, 'login-correcto.html.twig',array(
-                    'name' => $e,
+                    'name' => $e
               ));   
         }
         

@@ -29,11 +29,11 @@ class SignUpUseCase
         
             if (!is_null($user))
         {
-             throw new InvalidArgumentException('usuario registrado');
+             throw new \InvalidArgumentException('usuario registrado');
         }
 
            if (!filter_var($email,FILTER_VALIDATE_EMAIL)){
-             throw new InvalidArgumentException('email no valido');
+             throw new \InvalidArgumentException('email no valido');
 
         }
        
