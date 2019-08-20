@@ -29,7 +29,8 @@ class SignUpUseCase
         
             if (!is_null($user))
         {
-             throw new \InvalidArgumentException('usuario registrado');
+                throw new UserAlreadyExistException($e->getMessage());
+
         }
 
            if (!filter_var($email,FILTER_VALIDATE_EMAIL)){

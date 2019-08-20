@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
+use Psr\Http\Message\ResponseInterface;
 use App\UseCases\SignUpUseCase;
 
 class SignUpController
@@ -12,12 +13,12 @@ class SignUpController
 
    
     private $useCase;
-    private $twig;
+    private $responseInterface;
     
-    public function __construct(SignUpUseCase $useCase,Twig $twig)
+    public function __construct(SignUpUseCase $useCase,ResponseInterface $responseInterface)
     {
         $this->useCase = $useCase;
-        $this->twig = $twig;
+        $this->responseInterface = $responseInterface;
     }
 
     public function __invoke(Request $request, Response $response, ?array $args = []): Response
@@ -31,7 +32,7 @@ class SignUpController
             $this->useCase->__invoke($username, $email,$password);
         } catch (\Exception $e) {
             return $this->twig->render($response, 'login-correcto.html.twig',array(
-                    'name' => $e
+                    'name' => $useCase
               ));   
         }
         

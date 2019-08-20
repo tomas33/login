@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-class InvalidArgumentException extends Exception{
+class UserAlreadyExistException extends \Exception{
    
     
 } 

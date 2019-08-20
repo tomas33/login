@@ -16,6 +16,6 @@ $container[LoginController::class] = function ($c) {
 $container[SignUpController::class] = function ($c) {
     return new SignUpController(
         $c->get(SignUpUseCase::class),
-        $c->get(Twig::class)
+        $c->get(ResponseInterface::class)
     );
 };
