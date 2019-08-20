@@ -29,6 +29,6 @@ class SignUpController
         
         $this->useCase->__invoke($username, $email,$password);
         
-         return $this->twig->render($response, 'login-correcto.html.twig', array('tomas' => 'tomas'));
+         return $this->twig->render($response, 'login-correcto.html.twig');
     }
 }
