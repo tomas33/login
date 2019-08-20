@@ -13,15 +13,15 @@ class SignUpController
 
    
     private $useCase;
-    private $responseInterface;
+    private $twig;
     
-    public function __construct(SignUpUseCase $useCase,ResponseInterface $responseInterface)
+    public function __construct(SignUpUseCase $useCase,Twig $twig)
     {
         $this->useCase = $useCase;
-        $this->responseInterface = $responseInterface;
+        $this->twig = $twig;
     }
 
-    public function __invoke(Request $request, Response $response, ?array $args = []): Response
+     public function __invoke(RequestInterface $request, ResponseInterface $response, ?array $args = []): ResponseInterface
     {
         $username = $request->getParam('username');
         $email    = $request->getParam('email');
@@ -30,9 +30,9 @@ class SignUpController
         
         try {
             $this->useCase->__invoke($username, $email,$password);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->twig->render($response, 'login-correcto.html.twig',array(
-                    'name' => $useCase
+                    'name' => $name,
               ));   
         }
         
