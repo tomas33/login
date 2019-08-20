@@ -3,6 +3,7 @@
 namespace App\UseCases;
 
 use App\Domain\User;
+use App\Exceptions\UserAlreadyExistException;
 use Doctrine\ORM\EntityManager;
 
 class SignUpUseCase
@@ -28,7 +29,7 @@ class SignUpUseCase
         try {
             if (!is_null($user))
         {
-             throw new \Exception('usuario registrado');
+             throw new \UserAlreadyExistException();
         }
         
         } catch (Exception $e) {
