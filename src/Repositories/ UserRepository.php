@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories;
 
-use  EntityRepository;
+use  Doctrine\ORM\EntityRepository;
 
 class  UserRepository extends EntityRepository
 {
