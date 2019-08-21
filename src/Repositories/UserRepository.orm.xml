@@ -1,5 +1,0 @@
-<doctrine-mapping>
-    <entity name="App\Domain\Mapping\User" table="users" schema="schema_name" repository-class="App\Repositories\UserRepository">
-    
-    </entity>
-</doctrine-mapping>
