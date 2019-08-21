@@ -14,7 +14,7 @@ class SignUpUseCase
      */
     private $em;
 
-        public function __construct (EntityManager $em)
+        public function __construct (UserRepository $em)
     {
         $this->em = $em;
         

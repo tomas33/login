@@ -13,7 +13,7 @@ $container[LoginController::class] = function ($c) {
         $c->get(Twig::class));
 };
 
-$container[SignUpController::class] = function ($c) {
+$container[UserRepository::class] = function ($c) {
     return new SignUpController(
         $c->get(SignUpUseCase::class),
         $c->get(Twig::class)
