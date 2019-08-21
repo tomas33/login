@@ -22,8 +22,7 @@ class SignUpUseCase
         public function __invoke(string $username, string $email, string $password)
     {
          $user = $this->em->getRepository(User::class)->findOneBy([
-            'username' => $username,
-            'email'    => $email
+            'username' => $username
 ]);
         
         
