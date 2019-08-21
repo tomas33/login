@@ -7,6 +7,6 @@ $container = $app->getContainer();
 
 $container[SignUpUseCase::class] = function ($c) {
     return new SignUpUseCase(
-         $c->get(EntityManager::class)
+         $c->get(UserRepository::class)
         );
 };
