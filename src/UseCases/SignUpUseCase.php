@@ -12,11 +12,11 @@ class SignUpUseCase
     /**
      * @var EntityManager
      */
-    private $userrepositori;
+    private $repositori;
 
-        public function __construct (UserRepository $userrepositori)
+        public function __construct (UserRepository $repositori)
     {
-        $this->userrepositori = $userrepositori;
+        $this->repositori = $repositori;
         
     }
         public function __invoke(string $username, string $email, string $password)
