@@ -6,7 +6,7 @@ use App\Domain\User;
 
 $container = $app->getContainer();
 
-$container[UserRepository::class] = function (ContainerInterface $c) {
+$container[UserRepository::class] = function ($c) {
     return $c->get(EntityManager::class)
     ->getRepository(User::class);
 };

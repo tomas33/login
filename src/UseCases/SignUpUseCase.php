@@ -4,6 +4,7 @@ namespace App\UseCases;
 
 use App\Domain\User;
 use App\Exceptions\UserAlreadyExistException;
+use App\Repositories\UserRepository;
 
 class SignUpUseCase
 {

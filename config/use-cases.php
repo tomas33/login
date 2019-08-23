@@ -1,7 +1,6 @@
 <?php
 
 use App\UseCases\SignUpUseCase;
-use Doctrine\ORM\EntityManager;
 use App\Repositories\UserRepository;
 
 $container = $app->getContainer();
