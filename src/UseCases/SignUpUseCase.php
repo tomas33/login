@@ -8,40 +8,33 @@ use Doctrine\ORM\EntityManager;
 
 class SignUpUseCase
 {
-    
-    /**
-     * @var EntityManager
-     */
-    private $repositori;
 
-        public function __construct (UserRepository $repositori)
+    private $repository;
+
+    public function __construct(UserRepository $repository)
     {
-        $this->repositori = $repositori;
-        
+        $this->repository = $repository;
     }
-        public function __invoke(string $username, string $email, string $password)
+    public function __invoke(string $username, string $email, string $password)
     {
-         $user = $this->em->getRepository(User::class)->findOneBy([
+        $user = $this->repository->getRepository(User::class)->findOneBy([
             'username' => $username
-]);
-        
-        
-            if (!is_null($user))
-        {
-                throw new UserAlreadyExistException('usuario registrado');
+        ]);
 
+
+        if (!is_null($user)) {
+            throw new UserAlreadyExistException('usuario registrado');
         }
 
-           if (!filter_var($email,FILTER_VALIDATE_EMAIL)){
-             throw new \InvalidArgumentException('email no valido');
-
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new \InvalidArgumentException('email no valido');
         }
-       
-        
 
-         $user = new User($username, $email, $password);
 
-            $this->em->persist($user);
-            $this->em->flush();
+
+        $user = new User($username, $email, $password);
+
+        $this->repository->persist($user);
+        $this->repository->flush();
     }
 }
