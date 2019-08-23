@@ -4,11 +4,9 @@ namespace App\UseCases;
 
 use App\Domain\User;
 use App\Exceptions\UserAlreadyExistException;
-use Doctrine\ORM\EntityManager;
 
 class SignUpUseCase
 {
-
     private $repository;
 
     public function __construct(UserRepository $repository)

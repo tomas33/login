@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use Slim\Http\Request;
-use Slim\Http\Response;
 use Slim\Views\Twig;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\RequestInterface;
