@@ -9,15 +9,16 @@ class UserRepository extends EntityRepository
 {
     public function findUserByUsernameOrEmail(string $username, string $email)
     {
-       $query = $this
-            ->createQueryBuilder('u')
-            ->where('u.username = :username OR u.email = :email')
-            ->setParameter('username', $username)
-            ->setParameter('email', $username)
-            ->getQuery();
-           $user = $query->getSingleResult();
         
-        return $user;
-
+        return $this
+            ->createQueryBuilder('u')
+            ->andWhere('u.username = :username')
+            ->orWhere('u.email = :email')
+            ->setParameters([
+                'username' => $username,
+                'email' => $email
+            ])
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }
