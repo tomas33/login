@@ -16,16 +16,17 @@ class SignUpUseCase
     }
     public function __invoke(string $username, string $email, string $password)
     {
-        $user = $this->repository(User::class)->findOneBy([
-            'username' => $username
-        ]);
+        $user = $this->repository->findUserByUsernameOrEmail(
+             $username,
+             $email
+        );
 
 
         if (!is_null($user)) {
             throw new UserAlreadyExistException('usuario registrado');
         }
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new \InvalidArgumentException('email no valido');
         }
 
