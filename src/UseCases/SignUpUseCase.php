@@ -17,8 +17,8 @@ class SignUpUseCase
     public function __invoke(string $username, string $email, string $password)
     {
         $user = $this->repository->findUserByUsernameOrEmail(
-             $username,
-             $email
+            $username,
+            $email
         );
 
 
