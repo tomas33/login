@@ -32,7 +32,7 @@ class SignUpUseCase
 
 
 
-        $user = new User($username, $email, $password);
+        $user = new User( $username, $email, $password);
 
         $this->repository->persist($user);
         $this->repository->flush();
