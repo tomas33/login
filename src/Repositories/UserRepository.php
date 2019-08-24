@@ -2,10 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Repositories\BaseRepository;
 
-use  Doctrine\ORM\EntityRepository;
-
-class UserRepository extends EntityRepository
+class UserRepository extends BaseRepository
 {
     public function findUserByUsernameOrEmail(string $username, string $email)
     {

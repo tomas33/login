@@ -4,7 +4,6 @@
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver;
-use Doctrine\ORM\Mapping\Driver\XmlDriver;
 use Doctrine\ORM\Tools\Setup;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
