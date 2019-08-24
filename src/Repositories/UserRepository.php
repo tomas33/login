@@ -16,7 +16,7 @@ class UserRepository extends EntityRepository
             ->setParameter('email', $username)
             ->getQuery();
            $user = $query->getSingleResult();
-            var_dump($user);
+        
         return $user;
 
     }
