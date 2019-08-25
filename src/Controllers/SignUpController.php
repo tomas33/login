@@ -35,7 +35,9 @@ class SignUpController
             
             return $this->twig->render(
                 $response,
-                'registro-ko.html.twig'
+                'registro-ko.html.twig',array(
+                    'e' => $e->getMessage(),
+              )
             );
         }
 
