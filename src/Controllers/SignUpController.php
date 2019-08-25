@@ -2,40 +2,46 @@
 
 namespace App\Controllers;
 
-use App\Domain\User;
-use Doctrine\ORM\EntityManager;
-use Slim\Http\Request;
-use Slim\Http\Response;
-use Slim\Http\StatusCode;
 use Slim\Views\Twig;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
+use App\UseCases\SignUpUseCase;
+use App\Exceptions\UserAlreadyExistException;
 
 class SignUpController
 {
-
-    /**
-     * @var EntityManager
-     */
-    private $em;
+    private $useCase;
     private $twig;
-    
-    public function __construct(EntityManager $em,Twig $twig)
+
+    public function __construct(SignUpUseCase $useCase, Twig $twig)
     {
-        $this->em = $em;
+        $this->useCase = $useCase;
         $this->twig = $twig;
     }
 
-    public function __invoke(Request $request, Response $response, ?array $args = []): Response
-    {
+    public function __invoke(
+        RequestInterface $request,
+        ResponseInterface $response,
+        ?array $args = []
+    ): ResponseInterface {
         $username = $request->getParam('username');
-        $email = $request->getParam('email');
-        $crypt  = $request->getParam('password');
+        $email    = $request->getParam('email');
+        $crypt    = $request->getParam('password');
         $password = password_hash($crypt, PASSWORD_DEFAULT);
 
-        $user = new User($username, $email, $password);
+        try {
+            $this->useCase->__invoke($username, $email, $password);
+        } catch (UserAlreadyExistException | \InvalidArgumentException $message) {
+            
+            return $this->twig->render(
+                $response,
+                'registro-ko.html.twig',array(
+                    'message' => $message->getMessage(),
+              )
+            );
+        }
 
-        $this->em->persist($user);
-        $this->em->flush();
 
-        return $this->twig->render($response, 'registro.twig');
+        return $this->twig->render($response, 'registro-ok.html.twig');
     }
 }
