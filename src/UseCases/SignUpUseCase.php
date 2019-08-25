@@ -26,14 +26,15 @@ class SignUpUseCase
             throw new UserAlreadyExistException('usuario registrado');
         }
 
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new \InvalidArgumentException('email no valido');
         }
 
 
 
         $user = new User($username, $email, $password);
-
+         
+    
         $this->repository->persist($user);
         $this->repository->flush();
     }
