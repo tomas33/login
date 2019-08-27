@@ -2,43 +2,47 @@
 
 namespace App\Controllers;
 
-use App\Domain\User;
-use Doctrine\ORM\EntityManager;
-use Slim\Http\Request;
-use Slim\Http\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
 use Slim\Views\Twig;
+use App\UseCases\LoginUseCase;
+use App\Exceptions\UserAlreadyExistException;
+use PharIo\Manifest\Email;
 
 class LoginController
 {
-    /**
-     * @var EntityManager
-     */
-    private $em;
+    private $useCase;
     private $twig;
 
-    public function __construct(EntityManager $em, Twig $twig)
+    public function __construct(LoginUseCase $useCase, Twig $twig)
     {
-        $this->em   = $em;
+        $this->useCase   = $useCase;
         $this->twig = $twig;
     }
 
-    public function __invoke(Request $request, Response $response, $args = [])
+    public function __invoke(
+        RequestInterface $request,
+        ResponseInterface $response,
+        ?array $args = []
+    ): ResponseInterface 
     {
         $username = $request->getParam('username');
         $password = $request->getParam('password');
-        
-        $user = $this->em->getRepository(User::class)->findOneBy([
-    'username' => $username
-]);
+        $email = $request->getParam("email");
+      try {
+            $this->useCase->__invoke($username,$email,$password);
+      } catch (UserAlreadyExistException | \InvalidArgumentException $message) {
+            return $this->twig->render(
+                $response,
+                'login-ko.html.twig',
+                array(
+                    'message' => $message->getMessage(),
+                )
+            );
+      }
 
-        if (is_null($user)) {
-            return $this->twig->render($response, 'login-erroneo.html.twig');
-        }
-        if (!password_verify($password, $user->password())) {
-            return $this->twig->render($response, 'login-erroneo.html.twig');
-        }
         
-        
-        return $this->twig->render($response, 'login-correcto.html.twig');
+
+        return $this->twig->render($response, 'login-ok.html.twig');
     }
 }
