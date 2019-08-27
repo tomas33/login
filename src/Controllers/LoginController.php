@@ -7,7 +7,7 @@ use Psr\Http\Message\RequestInterface;
 use Slim\Views\Twig;
 use App\UseCases\LoginUseCase;
 use App\Exceptions\UserAlreadyExistException;
-use PharIo\Manifest\Email;
+
 
 class LoginController
 {
