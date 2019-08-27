@@ -15,7 +15,7 @@ class LoginUseCase
 
     public function __construct(UserRepository $repository)
     {
-        $this->repository   = $repository;
+         $this->repository   = $repository;
     }
 
     public function __invoke(string $username, string $email, string $password)
