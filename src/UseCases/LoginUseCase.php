@@ -9,7 +9,7 @@ use App\Repositories\UserRepository;
 
 class LoginUseCase
 {
-    
+
     private $repository;
 
 
