@@ -13,25 +13,17 @@ class LoginControllerTest extends TestCase
     
     public function testFailure()
     {
-        $this->assertClassHasAttribute('useCase', LoginController::class);
-        $this->assertClassHasAttribute('twig', LoginController::class);
-        $this->assertArrayHasKey('message', ['message' => '$message->getMessage()']);
-    }
-
-    public function testStub()
-    {
-        $mock = $this->getMockBuilder(LoginController::class)
+        $observer = $this->getMockBuilder(LoginController::class)
+            ->setMethods(['__invoke'])
             ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
             ->getMock();
+        $observer->expects($this->once())
+            ->method('__invoke')
+            ->with($this->anything()
+            );
+        $subject = new LoginController('LoginController','email');
+        $subject->attach($observer);
 
-        $mock->method('__invoke')
-            ->willReturn('foo');
-
-        $controller = new LoginController(LoginUseCase,Twig);
-        $this->assertTrue($controller->twig);
     }
     
 }
