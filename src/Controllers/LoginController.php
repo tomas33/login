@@ -8,7 +8,6 @@ use Slim\Views\Twig;
 use App\UseCases\LoginUseCase;
 use App\Exceptions\UserAlreadyExistException;
 
-
 class LoginController
 {
     private $useCase;
@@ -24,24 +23,23 @@ class LoginController
         RequestInterface $request,
         ResponseInterface $response,
         ?array $args = []
-    ): ResponseInterface 
-    {
+    ): ResponseInterface {
         $username = $request->getParam('username');
         $password = $request->getParam('password');
         $email = $request->getParam("email");
-      try {
-            $this->useCase->__invoke($username,$email,$password);
-      } catch (UserAlreadyExistException | \InvalidArgumentException $message) {
+        try {
+            $this->useCase->__invoke($username, $email, $password);
+        } catch (UserAlreadyExistException | \InvalidArgumentException $e) {
             return $this->twig->render(
                 $response,
                 'login-ko.html.twig',
-                array(
-                    'message' => $message->getMessage(),
-                )
+                [
+                    'message' => $e->getMessage(),
+                ]
             );
-      }
+        }
 
-        
+
 
         return $this->twig->render($response, 'login-ok.html.twig');
     }
