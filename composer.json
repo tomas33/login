@@ -42,7 +42,7 @@
     },
     "scripts": {
         "start": "docker-compose up -d",
-        "test": "phpunit",
+        "unit-test": "docker-compose exec php php vendor/bin/phpunit /app/Tests/Unit",
         "post-update-cmd": [
             "cp githooks/* .git/hooks/"
         ],

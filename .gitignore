@@ -5,3 +5,4 @@
 /cache/
 /.php_cs.cache
 /.vscode/
+/Tests/.phpunit.result.cache
