@@ -24,14 +24,13 @@ class LoginController
         RequestInterface $request,
         ResponseInterface $response,
         ?array $args = []
-    ): ResponseInterface 
-    {
+    ): ResponseInterface {
         $username = $request->getParam('username');
         $password = $request->getParam('password');
-        $email = $request->getParam("email");
-      try {
-            $this->useCase->__invoke($username,$email,$password);
-      } catch (UserAlreadyExistException | \InvalidArgumentException $message) {
+        $email    = $request->getParam("email");
+        try {
+            $this->useCase->__invoke($username, $email, $password);
+        } catch (UserAlreadyExistException | \InvalidArgumentException $message) {
             return $this->twig->render(
                 $response,
                 'login-ko.html.twig',
@@ -39,9 +38,9 @@ class LoginController
                     'message' => $message->getMessage(),
                 )
             );
-      }
+        }
 
-        
+
 
         return $this->twig->render($response, 'login-ok.html.twig');
     }
