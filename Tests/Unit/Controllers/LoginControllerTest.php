@@ -60,7 +60,12 @@ class LoginControllerTest extends TestCase
             [InvalidArgumentException::class]
         ];
     }
-
+     public function TwigProvider(): array
+    {
+        return [
+            [Twig::class]
+        ];
+    }
     /**
      * @dataProvider useCaseExceptionsProvider
      */
@@ -89,5 +94,12 @@ class LoginControllerTest extends TestCase
             ->willReturn($this->response);
 
         $this->createSut()->__invoke($this->request, $this->response, null);
+    }
+    /**
+     * @dataProvider TwigProvider
+     */
+    public function testSuccess ()
+    {
+        
     }
 }
