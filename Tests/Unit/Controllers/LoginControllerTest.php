@@ -6,7 +6,6 @@ use App\Controllers\LoginController;
 use App\Exceptions\UserAlreadyExistException;
 use App\UseCases\LoginUseCase;
 use InvalidArgumentException;
-use phpDocumentor\Reflection\Types\Null_;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Slim\Http\Request;
@@ -94,9 +93,8 @@ class LoginControllerTest extends TestCase
     /**
      * @dataProvider useCaseExceptionsProvider
      */
-    public function testSuccess (string $exceptionClass)
+    public function testSuccess ()
     {
-        $exception = $this->createMock($exceptionClass);
 
         $this->request
             ->expects($this->exactly(3))
@@ -110,13 +108,14 @@ class LoginControllerTest extends TestCase
 
         $this->useCase
             ->expects($this->once())
-            ->method('__invoke')
-            ->willReturn;
+            ->method('__invoke');
 
         $this->twig
             ->expects($this->once())
             ->method('render')
             ->willReturn($this->response);
         $this->createSut()->__invoke($this->request, $this->response, null);
+    
     }
+   
 }
