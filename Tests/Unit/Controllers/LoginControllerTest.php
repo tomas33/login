@@ -90,9 +90,7 @@ class LoginControllerTest extends TestCase
 
         $this->createSut()->__invoke($this->request, $this->response, null);
     }
-    /**
-     * @dataProvider useCaseExceptionsProvider
-     */
+    
     public function testSuccess ()
     {
 
