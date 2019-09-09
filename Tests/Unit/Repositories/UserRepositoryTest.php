@@ -14,12 +14,12 @@ class UserRepositoryTest extends TestCase
     /**
      * @var EntytiRepository|MockObject
      */
-    private $EntityRepository;
+    private $entityRepository;
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->EntityRepository  = $this->createMock(EntityRepository::class);
+        $this->entityRepository  = $this->createMock(EntityRepository::class);
         $this->User = $this->createMock(User::class);
         
     }
@@ -30,11 +30,10 @@ class UserRepositoryTest extends TestCase
             $this->EntityRepository,
             $this->User);
     }
-    public function testUser(string $username,string $email)
+    public function testUser()
     {
-       $username = $this->createMock($username); 
-       
-        $this->EntityRepository
+   
+        $this->UserRepository
         ->expects($this->exactly(2))
             ->method('findUserByUsernameOrEmail')
             ->withConsecutive(
