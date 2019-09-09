@@ -1,60 +1,50 @@
 <?php
 
 use App\Domain\User;
+use App\Repositories\UserRepository;
 use Doctrine\ORM\EntityRepository;
 use PHPUnit\Framework\TestCase;
 
-class UserTest extends TestCase
+class UserRepositoryTest extends TestCase
 {
     /**
-     * @var username|string
+     * @var user|MockObject
      */
-    private $username;
+    private $User;
     /**
-     * @var email|string
+     * @var EntytiRepository|MockObject
      */
-    private $email;
-    /**
-     * @var password|string
-     */
-    private $password;
+    private $EntityRepository;
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->user  = $this->createMock(User::class);
+        $this->EntityRepository  = $this->createMock(EntityRepository::class);
+        $this->User = $this->createMock(User::class);
         
     }
 
     private function createSut()
     {
-        return new User(
-            $this->username,
-            $this->email,
-            $this->password
-        );
+        return new UserRepository (
+            $this->EntityRepository,
+            $this->User);
     }
-    public function testUser(string $username,string $email,string $password)
+    public function testUser(string $username,string $email)
     {
-    
-        $email = $email('test@test.es');
-        $username = $username('test');
-        $password = $password('kjhjj');
-
-        $userRepository = $this->createMock(EntityRepository::class);
-        $userRepository->expects($this->any())
+       $username = $this->createMock($username); 
+       
+        $this->EntityRepository
+        ->expects($this->exactly(2))
             ->method('findUserByUsernameOrEmail')
-            ->willReturn($userRepository);
+            ->withConsecutive(
+                ['username'],
+                ['email'])
 
-    
-        $objectManager = $this->createMock(ObjectManager::class);
-    
-        $objectManager->expects($this->any())
-            ->method('getRepository')
-            ->willReturn($userRepository);
+            ->willReturnOnConsecutiveCalls('username', 
+                 'email');
 
-        $findUserByUsernameOrEmail = new findUserByUsernameOrEmail($objectManager);
-        $this->assertEquals(2100, $findUserByUsernameOrEmail());
+        $this->createSut()->findUserByUsernameOrEmail('test','test@test.es');
     }
 }
 
