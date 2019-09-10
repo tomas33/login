@@ -60,7 +60,7 @@ class UserRepositoryTest extends TestCase
              ->willReturnSelf();
 
         $this->queryBuilder
-            ->expects($this->exactly(2))
+            ->expects($this->once())
             ->method('andWhere')
             ->with('u.username = :username')
             ->willReturnSelf();
