@@ -2,40 +2,42 @@
 
 use App\Domain\User;
 use App\Repositories\UserRepository;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use PHPUnit\Framework\TestCase;
 
 class UserRepositoryTest extends TestCase
 {
     /**
-     * @var user|MockObject
+     * @var ClassMetadata|MockObject
      */
-    private $User;
+    private $classMetadata;
     /**
-     * @var EntytiRepository|MockObject
+     * @var EntytiManager|MockObject
      */
-    private $entityRepository;
+    private $entityManager;
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->entityRepository  = $this->createMock(EntityRepository::class);
-        $this->User = $this->createMock(User::class);
+        $this->entityManager  = $this->createMock(EntityManager::class);
+        $this->classMetadata = $this->createMock(ClassMetadata::class);
         
     }
 
     private function createSut()
     {
         return new UserRepository (
-            $this->EntityRepository,
-            $this->User);
+            $this->entityManager,
+            $this->classMetadata);
     }
-    public function testUser()
+    public function testUser($entityManager,$classMetadata)
     {
    
-        $this->UserRepository
+         $this->createMock($entityManager);
+         $this->entity
         ->expects($this->exactly(2))
-            ->method('findUserByUsernameOrEmail')
+            ->method('andWhere')
             ->withConsecutive(
                 ['username'],
                 ['email'])
