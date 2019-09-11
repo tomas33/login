@@ -5,6 +5,7 @@ use App\Repositories\UserRepository;
 use App\UseCases\LoginUseCase;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\ObjectEnumerator\InvalidArgumentException;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class LoginUseCaseTest extends TestCase
 {
@@ -33,11 +34,10 @@ class LoginUseCaseTest extends TestCase
             [InvalidArgumentException::class]
         ];
     }
-   
+
     /**
      * @dataProvider useCaseExceptionsProvider
      */
-
     /**
      * @test
      */
@@ -47,11 +47,11 @@ class LoginUseCaseTest extends TestCase
         $this->repository
             ->expects($this->once())
             ->method('findOneBy')
-            -> with([
-                'username' => 'tomas'
-            ])
-                ;
-        $this->createSut()->__invoke('tomas','email','password');
+            ->with(
+                ['username'=>'tomas'],
+                )
+            ->willReturnSelf();
+        $this->createSut()->__invoke('tomas','email', '1231456');
     }
 }
 
