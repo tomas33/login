@@ -65,6 +65,23 @@ class UserRepositoryTest extends TestCase
             ->with('u.username = :username')
             ->willReturnSelf();
 
-        $this->createSut()->findUserByUsernameOrEmail('test', 'test@test.es');
+          $this->queryBuilder
+            ->expects($this->once())
+            ->method('orWhere')
+            ->with('u.email = :email')
+            ->willReturnSelf();
+
+       $email = $this->queryBuilder
+            ->expects($this->once())
+            ->method('setParameters')
+            ->with([
+                'username' => $username,
+                'email' => $email
+            ])
+            ->willReturnOnConsecutiveCalls('username')
+            ;
+       
+        $this->createSut()->findUserByUsernameOrEmail($email, $email);
     }
 }
+
