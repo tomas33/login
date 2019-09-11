@@ -1,6 +1,7 @@
 <?php
 
 use App\Repositories\UserRepository;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\QueryBuilder;
@@ -24,6 +25,11 @@ class UserRepositoryTest extends TestCase
      */
     private $queryBuilder;
 
+    /**
+     * @var AbstractQuery|MockObject
+     */
+    private $query;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -31,6 +37,7 @@ class UserRepositoryTest extends TestCase
         $this->entityManager  = $this->createMock(EntityManager::class);
         $this->classMetadata = $this->createMock(ClassMetadata::class);
         $this->queryBuilder = $this->createMock(QueryBuilder::class);
+        $this->query = $this->createMock(AbstractQuery::class);
     }
 
     private function createSut(): UserRepository
@@ -65,23 +72,31 @@ class UserRepositoryTest extends TestCase
             ->with('u.username = :username')
             ->willReturnSelf();
 
-          $this->queryBuilder
+        $this->queryBuilder
             ->expects($this->once())
             ->method('orWhere')
             ->with('u.email = :email')
             ->willReturnSelf();
 
-       $email = $this->queryBuilder
+        $this->queryBuilder
             ->expects($this->once())
             ->method('setParameters')
             ->with([
-                'username' => $username,
-                'email' => $email
+                'username' => 'username',
+                'email' => 'email'
             ])
-            ->willReturnOnConsecutiveCalls('username')
-            ;
-       
-        $this->createSut()->findUserByUsernameOrEmail($email, $email);
+           ->willReturnSelf();
+
+        $this->queryBuilder
+            ->expects($this->once())
+            ->method('getQuery')
+            ->willReturn($this->query);
+
+        $this->query
+            ->expects($this->once())
+            ->method('getOneOrNullResult')
+            ->willReturn(null);
+
+        $this->createSut()->findUserByUsernameOrEmail('username', 'email');
     }
 }
-
