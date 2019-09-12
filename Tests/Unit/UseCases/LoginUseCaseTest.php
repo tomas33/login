@@ -43,14 +43,14 @@ class LoginUseCaseTest extends TestCase
      */
     public function ExcepcionTest()
     {
-        
         $this->repository
             ->expects($this->once())
             ->method('findOneBy')
             ->with(
-                ['username'=>'tomas'],
+                ['username'=>'tomas']
                 )
-            ->willReturnSelf();
+            ;
+        $this->expectException(UserAlreadyExistException::class);
         $this->createSut()->__invoke('tomas','email', '1231456');
     }
 }
