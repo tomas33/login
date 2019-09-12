@@ -29,17 +29,18 @@ class LoginUseCaseTest extends TestCase
     }
      
   
-    public function testUserAlreadyExistException()
+    public function testUserNotFound()
     {
         $this->repository
             ->expects($this->once())
             ->method('findOneBy')
             ->with(
-                ['username'=>'tomas']
+                ['username'=>'username']
                 )
-            ;
-        $this->expectException(UserAlreadyExistException::class);
-        $this->createSut()->__invoke('tomas','email', 'password');
+            ->willReturn($this->expectException(UserAlreadyExistException::class));
+        
+        $this->createSut()->__invoke('username','email', 'password');
+    
     }
 
 }
