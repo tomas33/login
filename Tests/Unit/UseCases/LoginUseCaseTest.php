@@ -4,7 +4,6 @@ use App\Exceptions\UserAlreadyExistException;
 use App\Repositories\UserRepository;
 use App\UseCases\LoginUseCase;
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\ObjectEnumerator\InvalidArgumentException;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class LoginUseCaseTest extends TestCase
