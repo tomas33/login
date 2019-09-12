@@ -27,21 +27,9 @@ class LoginUseCaseTest extends TestCase
             $this->repository
         );
     }
-     public function useCaseExceptionsProvider(): array
-    {
-        return [
-            [UserAlreadyExistException::class],
-            [InvalidArgumentException::class]
-        ];
-    }
-
-    /**
-     * @dataProvider useCaseExceptionsProvider
-     */
-    /**
-     * @test
-     */
-    public function ExcepcionTest()
+     
+  
+    public function testUserAlreadyExistException()
     {
         $this->repository
             ->expects($this->once())
@@ -51,7 +39,8 @@ class LoginUseCaseTest extends TestCase
                 )
             ;
         $this->expectException(UserAlreadyExistException::class);
-        $this->createSut()->__invoke('tomas','email', '1231456');
+        $this->createSut()->__invoke('tomas','email', 'password');
     }
+
 }
 
