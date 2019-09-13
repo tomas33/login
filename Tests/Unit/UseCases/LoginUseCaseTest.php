@@ -35,6 +35,7 @@ class LoginUseCaseTest extends TestCase
   
     public function testUserNotFound()
     {
+        
         $this->repository
             ->expects($this->once())
             ->method('findOneBy')
@@ -50,21 +51,30 @@ class LoginUseCaseTest extends TestCase
     }
     public function testPasswordNotMatch()
     {
+        
+        $user = new User('test','test@test.es','testpassword');
         $this->repository
-            ->expects($this->exactly(1))
+            ->expects($this->once())
             ->method('findOneBy')
             ->with(
                 ['username' => 'username']
             )
-           
-        ;
-        $this->expectException (UserAlreadyExistException::class);
-        $this->user->expects($this->exactly(1))
-        ->method('password')
-        ->with(['password' => 'password'])
+            ->willReturn($user);
+        $this->user
+        ->expects($this->once())
+        ->willThrowException(InvalidArgumentException);
+
+        $this->user
+            ->expects($this->exactly(1))
+            ->method('username')
+            ->with(
+            $user->username()
+            )
+            ->willReturn($this->toString($user))
         ;
 
-        $this->user->password(['password' => 'password']);
+        //$this->expectException(\InvalidArgumentException::class);
+        
         $this->createSut()->__invoke('username', 'email',  'password');
     }
 }
