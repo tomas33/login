@@ -6,6 +6,7 @@ use App\Repositories\UserRepository;
 use App\UseCases\LoginUseCase;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use SebastianBergmann\Diff\InvalidArgumentException;
 
 class LoginUseCaseTest extends TestCase
 {
@@ -40,16 +41,31 @@ class LoginUseCaseTest extends TestCase
             ->with(
                 ['username'=>'username']
                 )
-            ->willReturn($this->expectException(UserAlreadyExistException::class));
+            ;
 
-        $this->user
-        ->method('password')
-        ->with(['password' => 'passord'])
-        ;
+        $this->expectException(UserAlreadyExistException::class);
         
         $this->createSut()->__invoke('username','email', 'password');
     
     }
+    public function testPasswordNotMatch()
+    {
+        $this->repository
+            ->expects($this->exactly(1))
+            ->method('findOneBy')
+            ->with(
+                ['username' => 'username']
+            )
+           
+        ;
+        $this->expectException (UserAlreadyExistException::class);
+        $this->user->expects($this->exactly(1))
+        ->method('password')
+        ->with(['password' => 'password'])
+        ;
 
+        $this->user->password(['password' => 'password']);
+        $this->createSut()->__invoke('username', 'email',  'password');
+    }
 }
 
