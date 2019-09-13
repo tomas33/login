@@ -11,9 +11,9 @@ use SebastianBergmann\Diff\InvalidArgumentException;
 class LoginUseCaseTest extends TestCase
 {
     /**
-     * @var MockObject|repository
+     * @var MockObject|UserRepository
      */
-    private $repository;
+    private $UserRepository;
     /**
      * @var MockObject|user
      */
@@ -22,13 +22,13 @@ class LoginUseCaseTest extends TestCase
     {
         parent::setUp();
 
-        $this->repository = $this->createMock(UserRepository::class);
+        $this->UserRepository = $this->createMock(UserRepository::class);
         $this->user       = $this->createMock(User::class);         
     }
     private function createSut()
     {
         return new LoginUseCase(
-            $this->repository
+            $this->UserRepository
         );
     }
      
@@ -36,7 +36,7 @@ class LoginUseCaseTest extends TestCase
     public function testUserNotFound()
     {
         
-        $this->repository
+        $this->UserRepository
             ->expects($this->once())
             ->method('findOneBy')
             ->with(
@@ -52,28 +52,25 @@ class LoginUseCaseTest extends TestCase
     public function testPasswordNotMatch()
     {
         
-        $user = new User('test','test@test.es','testpassword');
-        $this->repository
+        
+        $this->UserRepository
             ->expects($this->once())
             ->method('findOneBy')
             ->with(
                 ['username' => 'username']
             )
-            ->willReturn($user);
+            ->willReturn($this->user);
+       
         $this->user
-        ->expects($this->once())
-        ->willThrowException(InvalidArgumentException);
-
-        $this->user
-            ->expects($this->exactly(1))
-            ->method('username')
+            ->expects($this->once())
+            ->method('password')
             ->with(
-            $user->username()
+            ['']
             )
-            ->willReturn($this->toString($user))
+            ->willReturn($this->toString($this->user))
         ;
-
-        //$this->expectException(\InvalidArgumentException::class);
+       
+        $this->expectException(\InvalidArgumentException::class);
         
         $this->createSut()->__invoke('username', 'email',  'password');
     }
