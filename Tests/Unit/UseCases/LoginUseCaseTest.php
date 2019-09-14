@@ -11,9 +11,9 @@ use SebastianBergmann\Diff\InvalidArgumentException;
 class LoginUseCaseTest extends TestCase
 {
     /**
-     * @var MockObject|UserRepository
+     * @var MockObject|userRepository
      */
-    private $UserRepository;
+    private $userRepository;
     /**
      * @var MockObject|user
      */
@@ -22,13 +22,13 @@ class LoginUseCaseTest extends TestCase
     {
         parent::setUp();
 
-        $this->UserRepository = $this->createMock(UserRepository::class);
+        $this->userRepository = $this->createMock(UserRepository::class);
         $this->user       = $this->createMock(User::class);         
     }
     private function createSut()
     {
         return new LoginUseCase(
-            $this->UserRepository
+            $this->userRepository
         );
     }
      
@@ -36,7 +36,7 @@ class LoginUseCaseTest extends TestCase
     public function testUserNotFound()
     {
         
-        $this->UserRepository
+        $this->userRepository
             ->expects($this->once())
             ->method('findOneBy')
             ->with(
@@ -53,21 +53,26 @@ class LoginUseCaseTest extends TestCase
     {
         
         
-        $this->UserRepository
+        $this->userRepository
             ->expects($this->once())
             ->method('findOneBy')
             ->with(
                 ['username' => 'username']
             )
-            ->willReturn($this->user);
+            ->willReturn('username');
+       
+
+        $this->user
+            ->expects($this->once())
+            ->method('username')
+            ->with ('username')
+            ;
+       
        
         $this->user
             ->expects($this->once())
             ->method('password')
-            ->with(
-            ['']
-            )
-            ->willReturn($this->toString($this->user))
+            ->willReturn('pass')
         ;
        
         $this->expectException(\InvalidArgumentException::class);
