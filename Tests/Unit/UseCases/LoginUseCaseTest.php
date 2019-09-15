@@ -59,25 +59,24 @@ class LoginUseCaseTest extends TestCase
             ->with(
                 ['username' => 'username']
             )
-            ->willReturn('username');
+            ->willReturn($this->user);
        
 
-        $this->user
+       /* $this->user
             ->expects($this->once())
             ->method('username')
             ->with ('username')
-            ;
-       
-       
+            ->willReturn('username');
+
         $this->user
             ->expects($this->once())
             ->method('password')
-            ->willReturn('pass')
-        ;
+            ;*/
        
         $this->expectException(\InvalidArgumentException::class);
         
-        $this->createSut()->__invoke('username', 'email',  'password');
+        
+        $this->createSut()->__invoke('username','email','password');
     }
 }
 
