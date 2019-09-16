@@ -70,7 +70,6 @@ class LoginUseCaseTest extends TestCase
     }
     public function testLoginSuccess()
     { 
-        $password =  password_hash('password', PASSWORD_DEFAULT);
         $this->userRepository
             ->expects($this->once())
             ->method('findOneBy')
@@ -82,7 +81,7 @@ class LoginUseCaseTest extends TestCase
         $this->user
             ->expects($this->once())
             ->method('password')
-            ->willReturn($this->user->password($password));       
+            ->willReturn(password_hash('password', PASSWORD_DEFAULT));       
         $this->createSut()->__invoke('username', 'email', 'password');
     }
 }
