@@ -6,16 +6,16 @@ use App\Repositories\UserRepository;
 use App\UseCases\LoginUseCase;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use SebastianBergmann\Diff\InvalidArgumentException;
+
 
 class LoginUseCaseTest extends TestCase
 {
     /**
-     * @var MockObject|userRepository
+     * @var MockObject|UserRepository
      */
     private $userRepository;
     /**
-     * @var MockObject|user
+     * @var MockObject|User
      */
     private $user;
     protected function setUp(): void
@@ -23,7 +23,8 @@ class LoginUseCaseTest extends TestCase
         parent::setUp();
 
         $this->userRepository = $this->createMock(UserRepository::class);
-        $this->user       = $this->createMock(User::class);         
+        $this->user       = $this->createMock(User::class);
+         
     }
     private function createSut()
     {
@@ -35,8 +36,7 @@ class LoginUseCaseTest extends TestCase
   
     public function testUserNotFound()
     {
-        
-        $this->userRepository
+           $this->userRepository
             ->expects($this->once())
             ->method('findOneBy')
             ->with(
@@ -50,9 +50,7 @@ class LoginUseCaseTest extends TestCase
     
     }
     public function testPasswordNotMatch()
-    {
-        
-        
+    {   
         $this->userRepository
             ->expects($this->once())
             ->method('findOneBy')
@@ -68,8 +66,24 @@ class LoginUseCaseTest extends TestCase
        
         $this->expectException(\InvalidArgumentException::class);
         
-        
         $this->createSut()->__invoke('username','email','password');
+    }
+    public function testLoginSuccess()
+    { 
+        $password =  password_hash('password', PASSWORD_DEFAULT);
+        $this->userRepository
+            ->expects($this->once())
+            ->method('findOneBy')
+            ->with(
+                ['username' => 'username']
+            )
+            ->willReturn($this->user);
+
+        $this->user
+            ->expects($this->once())
+            ->method('password')
+            ->willReturn($this->user->password($password));       
+        $this->createSut()->__invoke('username', 'email', 'password');
     }
 }
 
