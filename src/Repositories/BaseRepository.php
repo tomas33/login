@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 
-class BaseRepository extends EntityRepository
+abstract class BaseRepository extends EntityRepository
 {
     public function persist($entity): void
     {
@@ -16,4 +16,3 @@ class BaseRepository extends EntityRepository
         $this->getEntityManager()->flush();
     }
 }
-

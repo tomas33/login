@@ -14,7 +14,8 @@ use PHPUnit\Framework\TestCase;
  * tuned to the specifics of this skeleton app, so if your needs are
  * different, you'll need to change it.
  */
-class BaseTestCase extends TestCase {
+class BaseTestCase extends TestCase
+{
 
     /**
      * Use middleware when running application?
@@ -31,10 +32,11 @@ class BaseTestCase extends TestCase {
      * @param array|object|null $requestData the request data
      * @return \Slim\Http\Response
      */
-    public function runApp($requestMethod, $requestUri, $requestData = null) {
+    public function runApp($requestMethod, $requestUri, $requestData = null)
+    {
         // Create a mock environment for testing with
         $environment = Environment::mock(
-                        [
+            [
                             'REQUEST_METHOD' => $requestMethod,
                             'REQUEST_URI' => $requestUri
                         ]
@@ -77,5 +79,4 @@ class BaseTestCase extends TestCase {
         // Return the response
         return $response;
     }
-
 }

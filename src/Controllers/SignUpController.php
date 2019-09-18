@@ -32,12 +32,12 @@ class SignUpController
         try {
             $this->useCase->__invoke($username, $email, $password);
         } catch (UserAlreadyExistException | \InvalidArgumentException $message) {
-            
             return $this->twig->render(
                 $response,
-                'registro-ko.html.twig',array(
+                'registro-ko.html.twig',
+                [
                     'message' => $message->getMessage(),
-              )
+              ]
             );
         }
 
