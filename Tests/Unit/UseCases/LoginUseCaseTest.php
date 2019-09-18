@@ -7,7 +7,6 @@ use App\UseCases\LoginUseCase;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
-
 class LoginUseCaseTest extends TestCase
 {
     /**
@@ -24,7 +23,6 @@ class LoginUseCaseTest extends TestCase
 
         $this->userRepository = $this->createMock(UserRepository::class);
         $this->user       = $this->createMock(User::class);
-         
     }
     private function createSut()
     {
@@ -36,7 +34,7 @@ class LoginUseCaseTest extends TestCase
   
     public function testUserNotFound()
     {
-           $this->userRepository
+        $this->userRepository
             ->expects($this->once())
             ->method('findOneBy')
             ->with(
@@ -46,11 +44,10 @@ class LoginUseCaseTest extends TestCase
 
         $this->expectException(UserAlreadyExistException::class);
         
-        $this->createSut()->__invoke('username','email', 'password');
-    
+        $this->createSut()->__invoke('username', 'email', 'password');
     }
     public function testPasswordNotMatch()
-    {   
+    {
         $this->userRepository
             ->expects($this->once())
             ->method('findOneBy')
@@ -66,10 +63,10 @@ class LoginUseCaseTest extends TestCase
        
         $this->expectException(\InvalidArgumentException::class);
         
-        $this->createSut()->__invoke('username','email','password');
+        $this->createSut()->__invoke('username', 'email', 'password');
     }
     public function testLoginSuccess()
-    { 
+    {
         $this->userRepository
             ->expects($this->once())
             ->method('findOneBy')
@@ -81,8 +78,7 @@ class LoginUseCaseTest extends TestCase
         $this->user
             ->expects($this->once())
             ->method('password')
-            ->willReturn(password_hash('password', PASSWORD_DEFAULT));       
+            ->willReturn(password_hash('password', PASSWORD_DEFAULT));
         $this->createSut()->__invoke('username', 'email', 'password');
     }
 }
-

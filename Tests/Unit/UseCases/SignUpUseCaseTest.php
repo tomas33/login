@@ -7,7 +7,6 @@ use App\UseCases\SignUpUseCase;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
-
 class SingUpUseCaseTest extends TestCase
 {
     /**
@@ -39,7 +38,6 @@ class SingUpUseCaseTest extends TestCase
             ->expects($this->once())
             ->method('findUserByUsernameOrEmail')
             ->with(
-            
                 'username'
             )
             ->willReturn('username');
@@ -70,7 +68,7 @@ class SingUpUseCaseTest extends TestCase
             ->method('findUserByUsernameOrEmail')
             ->with(
                 'username',
-            'email@test.com'
+                'email@test.com'
             );
        
         $this->createSut()->__invoke('username', 'email@test.com', 'password');

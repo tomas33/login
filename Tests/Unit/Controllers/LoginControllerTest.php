@@ -91,9 +91,8 @@ class LoginControllerTest extends TestCase
         $this->createSut()->__invoke($this->request, $this->response, null);
     }
     
-    public function testSuccess ()
+    public function testSuccess()
     {
-
         $this->request
             ->expects($this->exactly(3))
             ->method('getParam')
@@ -113,7 +112,5 @@ class LoginControllerTest extends TestCase
             ->method('render')
             ->willReturn($this->response);
         $this->createSut()->__invoke($this->request, $this->response, null);
-    
     }
-   
 }

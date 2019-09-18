@@ -2,26 +2,20 @@
 
 namespace App\UseCases;
 
-
 use App\Exceptions\UserAlreadyExistException;
 use App\Repositories\UserRepository;
 
-
 class LoginUseCase
 {
-
     private $repository;
-
 
     public function __construct(UserRepository $repository)
     {
-         $this->repository   = $repository;
+        $this->repository   = $repository;
     }
 
     public function __invoke(string $username, string $email, string $password)
     {
-
-
         $user = $this->repository->findOneBy([
             'username' => $username
         ]);

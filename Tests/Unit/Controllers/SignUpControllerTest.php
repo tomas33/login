@@ -4,6 +4,7 @@ namespace Tests\Controllers;
 
 use App\Controllers\SignUpController;
 use App\Exceptions\UserAlreadyExistException;
+use App\UseCases\LoginUseCase;
 use App\UseCases\SignUpUseCase;
 use InvalidArgumentException;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -16,7 +17,7 @@ class SignUpControllerTest extends TestCase
 {
 
     /**
-     * @var LoginUseCase|MockObject
+     * @var MockObject|LoginUseCase
      */
     private $useCase;
 
@@ -93,7 +94,6 @@ class SignUpControllerTest extends TestCase
 
     public function testSuccess()
     {
-
         $this->request
             ->expects($this->exactly(3))
             ->method('getParam')

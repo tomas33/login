@@ -14,6 +14,7 @@ class SignUpUseCase
     {
         $this->repository = $repository;
     }
+
     public function __invoke(string $username, string $email, string $password)
     {
         $user = $this->repository->findUserByUsernameOrEmail(
@@ -33,8 +34,8 @@ class SignUpUseCase
 
 
         $user = new User($username, $email, $password);
-         
-    
+
+
         $this->repository->persist($user);
         $this->repository->flush();
     }
