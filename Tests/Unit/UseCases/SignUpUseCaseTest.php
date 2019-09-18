@@ -70,16 +70,9 @@ class SingUpUseCaseTest extends TestCase
             ->method('findUserByUsernameOrEmail')
             ->with(
                 'username',
-                'email'
-            )
-            
-            ;
-        $this->user
-            ->expects($this->once())
-            ->method('username')
-            ;
-
-        
-        $this->createSut()->__invoke('username', 'email', 'password');
+            'email@test.com'
+            );
+       
+        $this->createSut()->__invoke('username', 'email@test.com', 'password');
     }
 }
