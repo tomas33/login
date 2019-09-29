@@ -25,13 +25,9 @@ class HomeController
         ?array $args = []
     ) 
     {
-       
         
         $this->twig->render($response, 'login-ok.html.twig');
-        if (!is_null($password)or (!is_null($email)))
-        {
-                return;
-        }
+        
          
     }
 }
