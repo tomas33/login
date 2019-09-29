@@ -23,9 +23,3 @@ $container[SignUpController::class] = function ($c) {
     );
     
 };
-
-$container[HomeController::class] = function ($c) {
-    return new HomeController(
-        $c->get(Twig::class)
-    );
-};
