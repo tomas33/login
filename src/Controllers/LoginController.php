@@ -24,11 +24,11 @@ class LoginController
         ResponseInterface $response,
         ?array $args = []
     ): ResponseInterface {
-        $username = $request->getParam('username');
-        $password = $request->getParam('password');
+       
+        $password = password_hash($request->getParam('password'), PASSWORD_DEFAULT);
         $email    = $request->getParam("email");
         try {
-            $this->useCase->__invoke($username, $email, $password);
+            $this->useCase->__invoke($email, $password);
         } catch (UserAlreadyExistException | \InvalidArgumentException $e) {
             return $this->twig->render(
                 $response,
