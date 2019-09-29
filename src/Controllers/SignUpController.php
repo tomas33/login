@@ -40,8 +40,6 @@ class SignUpController
               ]
             );
         }
-
-
         return $this->twig->render($response, 'registro-ok.html.twig');
     }
 }

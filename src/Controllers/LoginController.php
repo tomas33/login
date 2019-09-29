@@ -26,7 +26,7 @@ class LoginController
     ): ResponseInterface {
         $username = $request->getParam('username');
         $password = $request->getParam('password');
-        $email = $request->getParam("email");
+        $email    = $request->getParam("email");
         try {
             $this->useCase->__invoke($username, $email, $password);
         } catch (UserAlreadyExistException | \InvalidArgumentException $e) {
@@ -38,9 +38,6 @@ class LoginController
                 ]
             );
         }
-
-
-
         return $this->twig->render($response, 'login-ok.html.twig');
     }
 }
