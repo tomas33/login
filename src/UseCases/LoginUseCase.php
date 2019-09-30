@@ -16,14 +16,14 @@ class LoginUseCase
 
     public function __invoke(string $email, string $password)
     {
-        $email = $this->repository->findOneBy([
+        $user = $this->repository->findOneBy([
             'email' => $email
         ]);
 
-        if (is_null($email)) {
+        if (is_null($user)) {
             throw new UserAlreadyExistException('usuario requerido');
         }
-        if (!password_verify($password, $email->password())) {
+        if (!password_verify($password, $user->password())) {
             throw new \InvalidArgumentException('contraseña o usuario incorrecto');
         }
     }

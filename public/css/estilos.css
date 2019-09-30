@@ -1,5 +1,9 @@
+body {
+    display: block;
+    margin: 0px;
+}
 .cls-1 {
-    clip-path: url(#clip-INICIO_DE_SESI�N);
+    clip-path: url(#clip-INICIO_DE_SESIÓN);
                     }
 .boton_login{
 	top: 670px;
@@ -13,7 +17,7 @@
 .container {
     top: 301px;
     left: 974px;
-    width: 414px;
+    width: 555px;
     height: 415px;
     opacity: 1;
         }  

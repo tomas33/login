@@ -2,10 +2,9 @@
 
 namespace App\Controllers;
 
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Slim\Http\Request;
+use Slim\Http\Response;
 use Slim\Views\Twig;
-
 
 class HomeController
 {
@@ -20,11 +19,12 @@ class HomeController
     }
 
     public function __invoke(
-        RequestInterface  $request,
-        ResponseInterface $response,
+        Request $request,
+        Response $response,
         ?array $args = []
     ) 
     {
+        session_start();
         
         $this->twig->render($response, 'login-ok.html.twig');
         

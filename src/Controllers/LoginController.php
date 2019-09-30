@@ -2,42 +2,40 @@
 
 namespace App\Controllers;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\RequestInterface;
-use Slim\Views\Twig;
+
+
 use App\UseCases\LoginUseCase;
 use App\Exceptions\UserAlreadyExistException;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 class LoginController
 {
     private $useCase;
-    private $twig;
+    
 
-    public function __construct(LoginUseCase $useCase, Twig $twig)
+    public function __construct(LoginUseCase $useCase)
     {
         $this->useCase   = $useCase;
-        $this->twig = $twig;
+       
     }
 
     public function __invoke(
-        RequestInterface $request,
-        ResponseInterface $response,
+        Request $request,
+        Response $response,
         ?array $args = []
-    ): ResponseInterface {
+    )
+     {
        
         $password = $request->getParam('password');
         $email    = $request->getParam("email");
         try {
             $this->useCase->__invoke($email,$password);
-        } catch (UserAlreadyExistException | \InvalidArgumentException $e) {
-            return $this->twig->render(
-                $response,
-                'login-ko.html.twig',
-                [
-                    'message' => $e->getMessage(),
-                ]
-            );
+        } catch (UserAlreadyExistException | \InvalidArgumentException $e)
+         {
+            return $e->getMessage();
+                
         }
-        return $this->twig->render($response, 'perfil.html.twig');
+        return $response->withRedirect('/', 301);
     }
 }

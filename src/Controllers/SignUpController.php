@@ -3,10 +3,10 @@
 namespace App\Controllers;
 
 use Slim\Views\Twig;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\RequestInterface;
 use App\UseCases\SignUpUseCase;
 use App\Exceptions\UserAlreadyExistException;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 class SignUpController
 {
@@ -20,10 +20,11 @@ class SignUpController
     }
 
     public function __invoke(
-        RequestInterface $request,
-        ResponseInterface $response,
+        Request $request,
+        Response $response,
         ?array $args = []
-    ): ResponseInterface {
+    )
+    {
         $username = $request->getParam('username');
         $email    = $request->getParam('email');
         $crypt    = $request->getParam('password');
