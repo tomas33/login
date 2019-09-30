@@ -3,6 +3,7 @@
 use App\Controllers\HomeController;
 use App\Controllers\LoginController;
 use App\Controllers\SignUpController;
+use App\Domain\Session;
 use App\UseCases\LoginUseCase;
 use App\UseCases\SignUpUseCase;
 use Slim\Views\Twig;
@@ -12,7 +13,8 @@ $container = $app->getContainer();
 $container[LoginController::class] = function ($c) {
     return new LoginController(
         $c->get(LoginUseCase::class),
-        $c->get(Twig::class)
+        $c->get(Twig::class),
+        $c->get(Session::class)
     );
 };
 

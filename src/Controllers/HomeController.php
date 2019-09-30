@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Domain\User;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
@@ -25,7 +26,8 @@ class HomeController
     ) 
     {
         session_start();
-        
+
+           
         $this->twig->render($response, 'login-ok.html.twig');
         
          
