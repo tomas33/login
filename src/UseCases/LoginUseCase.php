@@ -24,7 +24,7 @@ class LoginUseCase
             throw new UserAlreadyExistException('usuario requerido');
         }
         if (!password_verify($password, $user->password())) {
-            throw new \InvalidArgumentException('contraseña o  usuario incorrecto');
+            throw new \InvalidArgumentException('contraseña o usuario incorrecto');
         }
     }
 }
