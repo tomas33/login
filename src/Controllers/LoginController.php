@@ -2,9 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Domain\Session;
-use App\Domain\User;
 use App\UseCases\LoginUseCase;
+use Slim\Views\Twig;
 use App\Exceptions\UserAlreadyExistException;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -12,12 +11,12 @@ use Slim\Http\Response;
 class LoginController
 {
     private $useCase;
-    private $session;
+    private $twig;
 
-    public function __construct(LoginUseCase $useCase)
+    public function __construct(LoginUseCase $useCase, Twig $twig)
     {
         $this->useCase = $useCase;
-        $this->Session = new Session();
+        $this->twig = $twig;
     }
 
     public function __invoke(
@@ -31,15 +30,20 @@ class LoginController
         $email    = $request->getParam("email");
         try {
             $this->useCase->__invoke($email,$password);
-            $this->session->init();
-            $this->session->add('id',$this->user->id());
+          
             
         } catch (UserAlreadyExistException | \InvalidArgumentException $e)
          {
-            return $e->getMessage();
+            return $this->twig->render(
+                $response,
+                'login.html.twig',
+                [
+                    'message' => $e->getMessage(),
+                ]
+            );
                 
         }
 
-        return $response->withRedirect('/', 301);
+        return $response->withRedirect('/home', 301);
     }
 }

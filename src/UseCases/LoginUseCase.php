@@ -2,6 +2,7 @@
 
 namespace App\UseCases;
 
+use App\Domain\User;
 use App\Exceptions\UserAlreadyExistException;
 use App\Repositories\UserRepository;
 
@@ -26,5 +27,9 @@ class LoginUseCase
         if (!password_verify($password, $user->password())) {
             throw new \InvalidArgumentException('contraseña o usuario incorrecto');
         }
+        session_start();
+
+        $_SESSION = $user->id();
+    
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Domain\User;
+
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
@@ -25,11 +25,22 @@ class HomeController
         ?array $args = []
     ) 
     {
-        session_start();
+        if ($_SESSION == null) {
+            $this->twig->render(
+                $response,
+                'home.html.twig',
+                [
+                    'session' => $_SESSION,
+                ]
+            ); 
+        }
 
-           
-        $this->twig->render($response, 'login-ok.html.twig');
+        \var_dump($_SESSION);
+        $this->twig->render($response,
+            'home.html.twig',
+            [
+                'session' => $_SESSION,
+            ]);
         
-         
     }
 }
