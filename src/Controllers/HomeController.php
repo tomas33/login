@@ -6,17 +6,19 @@ namespace App\Controllers;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
+use App\Domain\Session;
 
 class HomeController
 {
     
     private $twig;
-
+    private $session;
 
     public function __construct(Twig $twig)
     {
        
         $this->twig = $twig;
+        
     }
 
     public function __invoke(
@@ -25,21 +27,20 @@ class HomeController
         ?array $args = []
     ) 
     {
-        if ($_SESSION == null) {
+        $this->session = new Session();
+        $this->session->init();
+        
+        if ($this->session->getStatus() === 1 || empty($this->session->get('id')))
+        {
             $this->twig->render(
-                $response,
-                'home.html.twig',
-                [
-                    'session' => $_SESSION,
-                ]
-            ); 
-        }
-
-        \var_dump($_SESSION);
+                $response,'login.html.twig'
+                
+            );
+    }
         $this->twig->render($response,
             'home.html.twig',
             [
-                'session' => $_SESSION,
+                'session' => $_SESSION['id'],
             ]);
         
     }

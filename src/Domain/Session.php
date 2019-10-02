@@ -54,6 +54,9 @@ class Session
    */
   public function close()
   {
+    if (!isset($_SESSION)) {
+      session_start();
+    }
     session_unset();
     session_destroy();
   }

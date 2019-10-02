@@ -12,11 +12,13 @@ class LoginController
 {
     private $useCase;
     private $twig;
-
+    
     public function __construct(LoginUseCase $useCase, Twig $twig)
     {
         $this->useCase = $useCase;
         $this->twig = $twig;
+        
+
     }
 
     public function __invoke(
@@ -43,7 +45,7 @@ class LoginController
             );
                 
         }
-
-        return $response->withRedirect('/home', 301);
+         
+        return $response->withRedirect('/', 301);
     }
 }
