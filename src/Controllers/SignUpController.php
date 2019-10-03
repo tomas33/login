@@ -31,6 +31,7 @@ class SignUpController
         $password = password_hash($crypt, PASSWORD_DEFAULT);
 
         try {
+            
             $this->useCase->__invoke($username, $email, $password);
         } catch (UserAlreadyExistException | \InvalidArgumentException $message) {
             return $this->twig->render(

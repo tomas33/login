@@ -31,6 +31,9 @@ class LoginController
         $password = $request->getParam('password');
         $email    = $request->getParam("email");
         try {
+            if ($request->isGet()) {
+                return $response->withRedirect('/', 301);
+            }
             $this->useCase->__invoke($email,$password);
           
             
