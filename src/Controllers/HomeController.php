@@ -32,10 +32,7 @@ class HomeController
         
         if ($this->session->getStatus() === 1 || empty($this->session->get('id')))
         {
-            return $this->twig->render(
-                $response,
-                'login.html.twig'
-            );
+            return $response->withRedirect('/login', 301);
     }
     else {
         return $this->twig->render(

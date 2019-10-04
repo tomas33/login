@@ -41,10 +41,7 @@ class LoginController
                 }else {
                     return $this->twig->render(
                         $response,
-                        'home.html.twig',
-                        [
-                            'session' => $_SESSION['id'],
-                        ]
+                        'login.html.twig'
                     );
                 }
                
@@ -68,6 +65,6 @@ class LoginController
             $response,
             'login.html.twig'
         );*/
-        //return $response->withRedirect('/', 301);
+        return $response->withRedirect('/', 301);
     }
 }
