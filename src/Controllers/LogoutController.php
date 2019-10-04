@@ -28,7 +28,7 @@ class LogoutController
         $this->session = new Session();
         if ($this->session->getStatus() === 1 || empty($this->session->get('id'))) {
             $this->session->close();
-            return $response->withRedirect('/', 301);
+            return $response->withRedirect('/login', 301);
         }
         
         

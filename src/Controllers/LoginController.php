@@ -7,6 +7,7 @@ use Slim\Views\Twig;
 use App\Exceptions\UserAlreadyExistException;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use App\Domain\Session;
 
 class LoginController
 {
@@ -31,9 +32,24 @@ class LoginController
         $password = $request->getParam('password');
         $email    = $request->getParam("email");
         try {
+            $this->session = new Session();
+            $this->session->init();
+            $this->session->get('id');
             if ($request->isGet()) {
-                return $response->withRedirect('/', 301);
+                if ($this->session->getStatus() === 1 || empty($this->session->get('id'))) {
+                    return $response->withRedirect('/', 301);
+                }else {
+                    return $this->twig->render(
+                        $response,
+                        'home.html.twig',
+                        [
+                            'session' => $_SESSION['id'],
+                        ]
+                    );
+                }
+               
             }
+            
             $this->useCase->__invoke($email,$password);
           
             
@@ -48,7 +64,10 @@ class LoginController
             );
                 
         }
-         
-        return $response->withRedirect('/', 301);
+        /*return $this->twig->render(
+            $response,
+            'login.html.twig'
+        );*/
+        //return $response->withRedirect('/', 301);
     }
 }

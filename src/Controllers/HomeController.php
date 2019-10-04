@@ -32,16 +32,21 @@ class HomeController
         
         if ($this->session->getStatus() === 1 || empty($this->session->get('id')))
         {
-            $this->twig->render(
-                $response,'login.html.twig'
-                
+            return $this->twig->render(
+                $response,
+                'login.html.twig'
             );
     }
-        $this->twig->render($response,
-            'home.html.twig',
-            [
-                'session' => $_SESSION['id'],
-            ]);
+    else {
+        return $this->twig->render(
+                $response,
+                'home.html.twig',
+                [
+                    'session' => $_SESSION['id'],
+                ]
+            );
+    }
+       
         
     }
 }
