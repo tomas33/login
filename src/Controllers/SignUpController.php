@@ -3,10 +3,11 @@
 namespace App\Controllers;
 
 use Slim\Views\Twig;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\RequestInterface;
 use App\UseCases\SignUpUseCase;
 use App\Exceptions\UserAlreadyExistException;
+use Slim\Http\Request;
+use Slim\Http\Response;
+use App\Domain\Session;
 
 class SignUpController
 {
@@ -20,26 +21,41 @@ class SignUpController
     }
 
     public function __invoke(
-        RequestInterface $request,
-        ResponseInterface $response,
+        Request $request,
+        Response $response,
         ?array $args = []
-    ): ResponseInterface {
+    )
+    {
         $username = $request->getParam('username');
         $email    = $request->getParam('email');
         $crypt    = $request->getParam('password');
         $password = password_hash($crypt, PASSWORD_DEFAULT);
 
         try {
+            $this->session = new Session();
+            $this->session->init();
+            $this->session->get('id');
+            if ($request->isGet()) {
+                if ($this->session->getStatus() === 1 || empty($this->session->get('id'))) {
+                    return $this->twig->render(
+                        $response,
+                        'signup.html.twig'
+                    );
+                } else {
+                    return $response->withRedirect('/', 301);
+                }
+            }
             $this->useCase->__invoke($username, $email, $password);
         } catch (UserAlreadyExistException | \InvalidArgumentException $message) {
             return $this->twig->render(
                 $response,
-                'registro-ko.html.twig',
+                'signup.html.twig',
                 [
                     'message' => $message->getMessage(),
               ]
             );
         }
-        return $this->twig->render($response, 'registro-ok.html.twig');
+        //return $this->twig->render($response, 'registro-ok.html.twig');
+        return $response->withRedirect('/', 301);
     }
 }

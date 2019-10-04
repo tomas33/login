@@ -2,42 +2,70 @@
 
 namespace App\Controllers;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\RequestInterface;
-use Slim\Views\Twig;
 use App\UseCases\LoginUseCase;
+use Slim\Views\Twig;
 use App\Exceptions\UserAlreadyExistException;
+use Slim\Http\Request;
+use Slim\Http\Response;
+use App\Domain\Session;
 
 class LoginController
 {
     private $useCase;
     private $twig;
-
+    
     public function __construct(LoginUseCase $useCase, Twig $twig)
     {
-        $this->useCase   = $useCase;
+        $this->useCase = $useCase;
         $this->twig = $twig;
+        
+
     }
 
     public function __invoke(
-        RequestInterface $request,
-        ResponseInterface $response,
+        Request $request,
+        Response $response,
         ?array $args = []
-    ): ResponseInterface {
-        $username = $request->getParam('username');
+    )
+     {
+       
         $password = $request->getParam('password');
         $email    = $request->getParam("email");
         try {
-            $this->useCase->__invoke($username, $email, $password);
-        } catch (UserAlreadyExistException | \InvalidArgumentException $e) {
+            $this->session = new Session();
+            $this->session->init();
+            $this->session->get('id');
+            if ($request->isGet()) {
+                if ($this->session->getStatus() === 1 || empty($this->session->get('id'))) {
+                    return $this->twig->render(
+                        $response,
+                        'login.html.twig'
+                    );
+                    
+                }else {
+                    return $response->withRedirect('/', 301);
+                }
+               
+            }
+            
+            $this->useCase->__invoke($email,$password);
+          
+            
+        } catch (UserAlreadyExistException | \InvalidArgumentException $e)
+         {
             return $this->twig->render(
                 $response,
-                'login-ko.html.twig',
+                'login.html.twig',
                 [
                     'message' => $e->getMessage(),
                 ]
             );
+                
         }
-        return $this->twig->render($response, 'login-ok.html.twig');
+        /*return $this->twig->render(
+            $response,
+            'login.html.twig'
+        );*/
+        return $response->withRedirect('/', 301);
     }
 }

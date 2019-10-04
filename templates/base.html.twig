@@ -1,16 +1,24 @@
-
+﻿
 <!doctype html>
 
 <html lang="es">
 <head>
   <meta charset="utf-8">
-
-  <title>{% block title %}{% endblock %}</title>
-  <meta name="description" content="{% block meta %}The HTML5 Herald{% endblock %}">
-  <meta name="author" content="{% block content %}SitePoint{% endblock %}">
+  <title>
+  {% block title %}
+  {% endblock %}
+  </title>
+  <meta name="{% block metadescripcion %}{% endblock %}" content="{% block metacontent %}{% endblock %}">
+  <meta name="{% block autor %}{% endblock %}" content="{% block autorcontent %}{% endblock %}">
+  <link rel="stylesheet" href="{% block hrefstylesheet %}{% endblock %}" />
+  <link rel="shortcut icon" href="{% block favicon %}{% endblock %}"/>
 </head>
 <body>
-{% block body %}{% endblock %}
-
+{% block body %}
+{% endblock %}
+<footer>
+{% block footer %}
+{% endblock %}
+</footer>
 </body>
 </html>
