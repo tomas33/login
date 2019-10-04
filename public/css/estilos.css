@@ -14,23 +14,96 @@ body {
 	border-radius: 22px;
 	opacity: 1;
         }
+.boton_registrarse {
+    margin-left: 112px;
+    margin-top: 46px;  
+    text-align: center;
+    font: ExtraLight 20px/33px Catamaran;
+    letter-spacing: 0;
+    color: #FFFFFF;     
+    width: 195px;
+    height: 46px;
+    background: #FFA927 0% 0% no-repeat padding-box;
+    border-radius: 22px;
+    font-size: 25px;
+    opacity: 1;
+            }
 .container {
     top: 301px;
     left: 974px;
     width: 555px;
     height: 455px;
     opacity: 1;
-        }  
-input {
+        } 
+.container_signup{
+    top: 301px;
+    left: 974px;
+    width: 470px;
+    height: 412px;
+    opacity: 1;
+        }   
+.input_login{
     margin-left: 27px;
     margin-top: 22px;
     width: 351px;
     height: 55px;
     background-size: 22px 15px;
     background-position: 19px 21px;
-}       
+}   
+.form_signup {
+            margin-top: 40px;
+        }
+.nombre{
+    background-image: url('images/icono_nombre.png');
+    margin-top: 21px;
+    width: 353px;
+    height: 56px;
+    padding-left: 12%;
+    display: block;
+    background-repeat: no-repeat;
+    background-color: #B4B4B4 0% 0% no-repeat padding-box;
+    background-size: 40px 30px;
+    background-position: 10px 11px;
+    border: 1px solid #284940;
+    border-radius: 11px;
+    font-size: 30px;
+    opacity: 1;
+    }
+.email{
+    background-image: url('usuario_logo.png');
+    margin-top: 21px;
+    left: 974px;
+    width: 353px;
+    height: 56px;
+    padding-left: 12%;
+    display: block;
+    background-repeat: no-repeat;
+    background-color: #B4B4B4 0% 0% no-repeat padding-box;
+    background-size: 40px 30px;
+    background-position: 10px 11px;
+    border: 1px solid #284940;
+    border-radius: 11px;
+    font-size: 30px;
+    opacity: 1;
+    }
+.password{
+    background-image: url('logo_password.png');
+    margin-top: 21px;
+    width: 353px;
+    height: 56px;
+    display: block;
+    background-repeat: no-repeat;
+    padding-left: 12%;
+    background-color: #B4B4B4 0% 0% no-repeat padding-box;
+    background-size: 40px 30px;
+    background-position: 10px 11px;
+    border: 1px solid #284940;
+    border-radius: 11px;
+    font-size: 30px;
+    opacity: 1;
+    }    
 input[type=text]{
-    background-image: url('/images/usuario_logo.png');
+    background-image: url('/images/correo_logo.png');
     padding-left: 11%;
     display: block;
     background-repeat: no-repeat;

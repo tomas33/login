@@ -37,12 +37,13 @@ class LoginController
             $this->session->get('id');
             if ($request->isGet()) {
                 if ($this->session->getStatus() === 1 || empty($this->session->get('id'))) {
-                    return $response->withRedirect('/', 301);
-                }else {
                     return $this->twig->render(
                         $response,
                         'login.html.twig'
                     );
+                    
+                }else {
+                    return $response->withRedirect('/', 301);
                 }
                
             }

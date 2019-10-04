@@ -9,5 +9,5 @@ return function (App $app) {
     $app->get('/',HomeController::class);
     $app->map(['GET', 'POST'],'/login', LoginController::class);
     $app->get('/logout', LogoutController::class);
-    $app->map(['GET', 'POST'],'/registro', SignUpController::class);
+    $app->map(['GET', 'POST'],'/signup', SignUpController::class);
 };
