@@ -32,6 +32,6 @@ class LogoutController
         }
         
         
-        //return $response->withRedirect('/login', 301);
+        return $response->withRedirect('/login', 301);
     }
 }
