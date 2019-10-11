@@ -6,3 +6,4 @@
 /.php_cs.cache
 /.vscode/
 /Tests/.phpunit.result.cache
+/node_modules/

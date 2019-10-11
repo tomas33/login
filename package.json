@@ -1,0 +1,27 @@
+{
+  "name": "login",
+  "version": "1.0.0",
+  "description": "Esta aplicación tiene el proposito de entender el funcionamiento de Slim framework, así como entender algunos patrones\r de desarrollo como MVC, ADR, contenedor de dependencias, routing, dependencias con composer, namespaces entre otros.",
+  "main": "index.js",
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  },
+  "scripts": {
+      "build": "webpack --mode production",
+      "builddev": "webpack --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomas33/login.git"
+  },
+  "author": "tomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomas33/login/issues"
+  },
+  "homepage": "https://github.com/tomas33/login#readme"
+}
