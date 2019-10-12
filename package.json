@@ -1,7 +1,7 @@
 {
   "name": "login",
   "version": "1.0.0",
-  "description": "Esta aplicación tiene el proposito de entender el funcionamiento de Slim framework, así como entender algunos patrones\r de desarrollo como MVC, ADR, contenedor de dependencias, routing, dependencias con composer, namespaces entre otros.",
+  "description": "Esta aplicaciÃ³n tiene el proposito de entender el funcionamiento de Slim framework, asÃ­ como entender algunos patrones\r de desarrollo como MVC, ADR, contenedor de dependencias, routing, dependencias con composer, namespaces entre otros.",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
