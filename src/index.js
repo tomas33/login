@@ -1,4 +1,4 @@
-const form = new Vue({
+﻿const form = new Vue({
     el: '#form',
     data: {
         errors: [],

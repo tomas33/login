@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <title>Webpack App</title>
+  </head>
+  <body>
+    <div id="form" class="container">
+      <form @submit="checkForm" action="/login" method="post">
+        <p v-if="errors.length">
+          <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
+          <ul>
+            <li v-for="error in errors">{{ error }}</li>
+          </ul>
+        </p>
+        <input class="input_login" type="text" for="idemail" id="idemail" v-model="idemail" name="email"
+          placeholder="Introducir correo electrónico" autocomplete="off">
+        </input>
+    
+        <input class="input_login" type="password" id="idpasword" for="idpasword" v-model="idpasword" name="password"
+          placeholder="Introducir contraseña">
+        </input>
+        <input type="submit" value="Entrar">
+        </input>
+      </form>
+    </div>
+    <script src="runtime.acfdeda3904d25c72cbb.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="main.eb24d2043da6eee1641d.js" type="text/javascript"></script>
+  </body>
+</html>
