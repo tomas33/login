@@ -1,5 +1,4 @@
 /vendor/
-/nbproject/
 /logs/
 .env
 /cache/
@@ -10,7 +9,6 @@
 coverage/
 dist/
 !dist/index.html
-node_modules/
 *.log
 .DS_Store
 .DS_Store?

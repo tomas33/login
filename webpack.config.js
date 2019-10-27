@@ -6,15 +6,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
 	entry: './src/index.js',
 	output: {
-		path: path.resolve(__dirname, 'src/js_src'),
+		path: path.resolve(__dirname, 'src/build'),
 		filename: '[name].[contenthash].js'
 	},
 	module: {
 		rules: [
 			{
+				test: /\.png$/,
+				use: [
+					{
+						loader: 'url-loader'
+					}
+				]
+			},
+			{
 				test: /\.vue$/,
 				loader: 'vue-loader'
 			},
+			
 			{
 				test: /\.js$/,
 				use: 'babel-loader',
@@ -30,7 +39,8 @@ const config = {
 			{
 				test: /\.svg$/,
 				use: 'file-loader'
-			}
+			},
+			
 		]
 	},
 	resolve: {

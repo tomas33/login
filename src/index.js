@@ -1,4 +1,7 @@
-﻿const form = new Vue({
+﻿import '../public/css/estilos.css';
+import icono_nombre from '../public/images/icono_nombre.png';
+
+const form = new Vue({
     el: '#form',
     data: {
         errors: [],
