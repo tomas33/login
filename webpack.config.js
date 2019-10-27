@@ -12,12 +12,16 @@ const config = {
 	module: {
 		rules: [
 			{
-				test: /\.png$/,
+				test: /\.(png|jpg|gif)$/i,
 				use: [
 					{
-						loader: 'url-loader'
+						loader: 'url-loader',
+						options: {
+							limit: 8192,
+						},
 					}
 				]
+			
 			},
 			{
 				test: /\.vue$/,
@@ -33,7 +37,10 @@ const config = {
 				test: /\.css$/,
 				use: [
 					'vue-style-loader',
-					'css-loader'
+					'css-loader',
+					
+
+
 				]
 			},
 			{
